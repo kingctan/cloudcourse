@@ -1,0 +1,13 @@
+= settings.py =
+
+  * ADMIN_EMAIL: Administrative email used as sender for every email sent.
+  * CALENDAR_BATCH_EVENT_FEED: Google calendar gdata feed url. Course session timeslots will be created on this calendar and students invited to the event.
+
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
