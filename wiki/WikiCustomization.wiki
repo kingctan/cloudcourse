@@ -1,12 +1,35 @@
-= settings.py =
+=Settings.py=
 
   * ADMIN_EMAIL: Administrative email used as sender for every email sent.
-  * CALENDAR_BATCH_EVENT_FEED: Google calendar gdata feed url. Course session timeslots will be created on this calendar and students invited to the event.
+  * CALENDAR_BATCH_EVENT_FEED: Google calendar gdata feed url. Calendar events are created on this calendar for activity sessions.
+  * HELP_URL: Link presented for help on the site, can be pointed to a user customized help site.
+  * LOGO_LOCATION: Image that is displayed as the site logo.
+  * SERVICE_PROVIDER_MODULES: Maps services used by the site to implementing modules. These modules can be customized/rewritten to fit your requirements.
+  * TIMEZONES_FILE_LOCATION: Cloudcourse needs to know the timezones of users and room in the system to manage time display and cross timezone sessions. This should point to a .json file with mappings from country_city codes that users and rooms can have to the pytz timezone name they are mapped to.
+
+
+= Services =
+
+The following services can be custom written and replaced easily on the site. The service modules can be customized in settings.py file user SERVICE_PROVIDER_MODULES. 
+
+==DatastoreSyncService==
+
+This service is used to actively notify datastore changes to an external system. Useful to notify external system of new courses, registrations and their changes etc. The default module provided doesn't communicate to any external site.
+
+==SearchService==
+
+This service is used to search activities and their sessions. The default module doesn't provided any search functionality, users need to write their own preferred search mechanism and decide what model properties to search on etc.
+
+==RoomInfoService==
+
+This service is used to inform the site with conference rooms that are available for scheduling sessions. The service can be setup to be called periodically to update the list of rooms available on a regular basis.
+
+==UserInfoService==
 
 
 
-= Details =
 
+  *
 Add your content here.  Format your content with:
   * Text in *bold* or _italic_
   * Headings, paragraphs, and lists
