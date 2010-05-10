@@ -30,14 +30,14 @@ This service is used to inform the site with conference rooms that are available
 
 It is possible to further customize Cloud Course, with some more work.
 
- == Email ==
+== Email ==
 
 Cloud Course is configured to replace mailto links with gmail links automatically. If you want to use regular mailto: links instead:
 
 * Update core/templatetags/format.py EmailUrl method.
 * Update core/static/scripts/roster.js roster.emailAll method.
 
- == Calendar updates ==
+== Calendar updates ==
 
 Cloud Course is integrated with Google Calendar to update user calendars. If you want to integrate with a different backend, look at calendar.py module and replace relevant  methods.
  
