@@ -9,7 +9,7 @@ To run/install Cloud Course, the only pre-requisite is the [http://code.google.c
 
 First get the code. Either [http://code.google.com/p/cloudcourse/downloads/list download the binary] or [http://code.google.com/p/cloudcourse/source/checkout check out the source code from subversion].
 
-Make sure configure.sh and make.sh have execute permissions (chmod +x *.sh)
+Make sure configure.sh and make.sh have execute permissions (`chmod +x *.sh`)
 
 1 - Run configure.sh. This will download and set up the dependencies.
 
