@@ -26,6 +26,8 @@ This service is used to inform the site with conference rooms that are available
 
 == UserInfoService ==
 
+This service is used to to gather user information. This service is used both to evaluate business rules and to display user information. Information like user employment types, employee manager etc is provided by this service.
+
 = Advanced customization =
 
 It is possible to further customize Cloud Course, with some more work.
