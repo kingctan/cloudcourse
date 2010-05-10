@@ -1,4 +1,4 @@
-#Steps on how to create a session.
+#summary Create a session.
 
 = Create a session. =
 
