@@ -1,3 +1,4 @@
+#labels help,doc
 Help for Cloud Course
 
 = Introduction =
