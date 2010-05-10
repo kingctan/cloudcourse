@@ -42,7 +42,8 @@ Click `Load rooms` and `Construct AP Info`. You should then see a list of availa
 Go back to the `Admin interface` and click on `Configuration`. Then click `Get calendar token` and accept all prompts. You should see a calendar token in the configuration list.
 
 
-That's it! To make sure that everything works correctly, check out the [WikiHelp help page].
+That's it! To make sure that everything works correctly, create some activity and enroll. You should receive email notifications and your calendar should be updated accordingly.
+Check out the [WikiHelp help page] for more information.
  
 
 Check the Cloud Course [WikiCustomization custumization page] for more details on how to customize your instance.
