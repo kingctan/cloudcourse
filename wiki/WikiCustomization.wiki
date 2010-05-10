@@ -12,16 +12,32 @@
 
 The following services can be custom written and replaced easily on the site. The service modules can be customized in settings.py file user SERVICE_PROVIDER_MODULES. 
 
-==DatastoreSyncService==
+== DatastoreSyncService ==
 
 This service is used to actively notify datastore changes to an external system. Useful to notify external system of new courses, registrations and their changes etc. The default module provided doesn't communicate to any external site.
 
-==SearchService==
+== SearchService ==
 
 This service is used to search activities and their sessions. The default module doesn't provided any search functionality, users need to write their own preferred search mechanism and decide what model properties to search on etc.
 
-==RoomInfoService==
+== RoomInfoService ==
 
 This service is used to inform the site with conference rooms that are available for scheduling sessions. The service can be setup to be called periodically to update the list of rooms available on a regular basis.
 
-==UserInfoService==
+== UserInfoService ==
+
+= Advanced customization =
+
+It is possible to further customize Cloud Course, with some more work.
+
+ == Email ==
+
+Cloud Course is configured to replace mailto links with gmail links automatically. If you want to use regular mailto: links instead:
+
+* Update core/templatetags/format.py EmailUrl method.
+* Update core/static/scripts/roster.js roster.emailAll method.
+
+ == Calendar updates ==
+
+Cloud Course is integrated with Google Calendar to update user calendars. If you want to integrate with a different backend, look at calendar.py module and replace relevant  methods.
+ 
