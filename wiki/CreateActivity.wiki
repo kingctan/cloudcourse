@@ -1,0 +1,5 @@
+#Steps on how to create an activity.
+
+= Create an activity. =
+
+Next [CreateSession create a session].
