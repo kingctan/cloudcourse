@@ -1,4 +1,4 @@
-#labels install
+#labels Featured
 #Installation instructions for Cloud Course
 
 = Introduction =
