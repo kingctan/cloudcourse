@@ -1,0 +1,8 @@
+Help for Cloud Course
+
+= Introduction =
+
+This page describes how to use Cloud Course.
+For details on how to install Cloud Course, [WikiInstall check here].
+
+= Details =
