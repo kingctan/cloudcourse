@@ -25,12 +25,3 @@ This service is used to search activities and their sessions. The default module
 This service is used to inform the site with conference rooms that are available for scheduling sessions. The service can be setup to be called periodically to update the list of rooms available on a regular basis.
 
 ==UserInfoService==
-
-
-
-
-  *
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
