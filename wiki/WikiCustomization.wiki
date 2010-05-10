@@ -1,4 +1,4 @@
-=Settings.py=
+= Settings.py =
 
   * ADMIN_EMAIL: Administrative email used as sender for every email sent.
   * CALENDAR_BATCH_EVENT_FEED: Google calendar gdata feed url. Calendar events are created on this calendar for activity sessions.
@@ -10,23 +10,23 @@
 
 = Services =
 
-The following services can be custom written and replaced easily on the site. The service modules can be customized in settings.py file user SERVICE_PROVIDER_MODULES. 
+The following services can be custom written and replaced easily on the site. The service modules can be customized in settings.py file user SERVICE_PROVIDER_MODULES.
 
 == DatastoreSyncService ==
 
-This service is used to actively notify datastore changes to an external system. Useful to notify external system of new courses, registrations and their changes etc. The default module provided doesn't communicate to any external site.
+This service is used to actively notify datastore changes to an external system. Useful to notify external system of new courses, registrations and their changes etc. The default module provided doesn't communicate to any external site. Interface defined in {{{core.service_interfaces.DatastoreSyncService}}}.
 
 == SearchService ==
 
-This service is used to search activities and their sessions. The default module doesn't provided any search functionality, users need to write their own preferred search mechanism and decide what model properties to search on etc.
+This service is used to search activities and their sessions. The default module doesn't provided any search functionality, users need to write their own preferred search mechanism and decide what model properties to search on etc. Interface defined in {{{core.service_interfaces.SearchService}}}.
 
 == RoomInfoService ==
 
-This service is used to inform the site with conference rooms that are available for scheduling sessions. The service can be setup to be called periodically to update the list of rooms available on a regular basis.
+This service is used to inform the site with conference rooms that are available for scheduling sessions. The service can be setup to be called periodically to update the list of rooms available on a regular basis. Interface defined in {{{core.service_interfaces.RoomInfoService}}}.
 
 == UserInfoService ==
 
-This service is used to to gather user information. This service is used both to evaluate business rules and to display user information. Information like user employment types, employee manager etc is provided by this service.
+This service is used to to gather user information. This service is used both to evaluate business rules and to display user information. Information like user employment types, employee manager etc is provided by this service. Interface defined in {{{core.service_interfaces.UserInfoService}}}.
 
 = Advanced customization =
 
