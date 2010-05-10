@@ -1,0 +1,5 @@
+#Steps on how to create a session.
+
+= Create a session. =
+
+Next [ManageRoster manage a roster].
