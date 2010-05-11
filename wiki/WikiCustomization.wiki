@@ -20,7 +20,7 @@ This service is used to actively notify datastore changes to an external system.
 
 This service is used to search activities and their sessions. The default module doesn't provided any search functionality, users need to write their own preferred search mechanism and decide what model properties to search on etc. Interface defined in {{{core.service_interfaces.SearchService}}}.
 
-== RoomInfoService ==
+=== RoomInfoService ===
 
 This service is used to inform the site with conference rooms that are available for scheduling sessions. The service can be setup to be called periodically to update the list of rooms available on a regular basis. Interface defined in {{{core.service_interfaces.RoomInfoService}}}.
 
