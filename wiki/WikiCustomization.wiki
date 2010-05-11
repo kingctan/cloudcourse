@@ -1,3 +1,5 @@
+Check here for [WikiInstall installation instructions]
+
 = Settings.py =
 
   * ADMIN_EMAIL: Administrative email used as sender for every email sent.
