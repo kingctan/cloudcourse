@@ -1,4 +1,5 @@
-#summary How to manage session rosters.
+#summary Roster management.
+#labels Featured
 
 = Roster Management =
 
