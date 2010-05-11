@@ -1,4 +1,5 @@
 #summary Create an activity.
+#labels Featured
 
 = Create an activity. =
 
