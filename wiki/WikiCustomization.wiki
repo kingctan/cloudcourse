@@ -41,5 +41,8 @@ Cloud Course is configured to replace mailto links with gmail links automaticall
 
 == Calendar updates ==
 
-Cloud Course is integrated with Google Calendar to update user calendars. If you want to integrate with a different backend, look at calendar.py module and replace relevant  methods.
+Cloud Course is integrated with Google Calendar to update user calendars.
+By default, the calendar has to be on the same domain as the application instance. So if your application is restricted to domain.com your calendar should also be available on the same domain. This behavior is controlled by calendar.CalendarTokenRequestUrl.
+
+If you want to integrate with a different backend than Google Calendar, look at calendar.py module and replace relevant methods.
  
