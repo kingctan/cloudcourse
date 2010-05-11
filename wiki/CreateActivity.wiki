@@ -8,16 +8,18 @@
 
    # Click “Create new activity” button in the top the navigation column.
    # Fill in the required fields
-     * Title
-     * Activity type - Just a tag for display purposes.
-     * Description - Supports rich text formatting like images, links etc.
-     * Owners - Comma separated email id who have edit access on the activity and sessions below it.
-     * Contact - Contact email for the activity, can be a group. Course registration emails, reminders etc have the contact address in the reply to field.
-     * Offered by - Select a department that is offering this course.
+     * _Title_ - Activity title.
+     * _Activity type_ - Just a tag for display purposes.
+     * _Description_ - Supports rich text formatting like images, links etc.
+     * _Owners_ - Comma separated email id who have edit access on the activity and sessions below it.
+     * _Contact_ - Contact email for the activity, can be a group. Course registration emails, reminders etc have the contact address in the reply to field.
+     * _Offered by_ - Select a department that is offering this course.
    # Fill in the optional fields
-     * Difficulty - Introductory, Moderate or Advanced
-     * Prerequisite - A short prerequisite text. No enforcement, displayed on activity page.
-     * Manager approval - Participants are not enrolled until their manager approves them for enrollment.
+     * _Difficulty_ - Introductory, Moderate or Advanced
+     * _Restricted to_ - Allowed student types. Students not in the allowed types cannot register for the activity.
+     * _Manager approval_ - Participants are not enrolled until their manager approves them for enrollment.
+     * _Shared activity_ - All users can schedule new sessions under the activity. Useful for anyone to just schedule a session and teach it without contacting the owners.
+     * _Visible_ - If unchecked makes the activity and the sessions underneath invisible. Invisible activities are accessible only through their private url. Anyone who has this url can access them. Useful to create activities that are of interest to a select few students and not the whole community and to email the url to the students so that they can access the activity.
    # Click Create.
 
 == See it in Action! ==
