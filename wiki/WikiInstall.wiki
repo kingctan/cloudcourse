@@ -25,12 +25,12 @@ Assuming you have created an application of the app id specified in the app.yaml
 
 == Post Deployment Setup ==
 
-  # Log in to your CloudCourse deployment with an admin/App Engine developer account.
+  # Log in to your `CloudCourse` deployment with an admin/App Engine developer account.
   # Populate the database with room information. Click on the upper right corner `Admin interface` then on `Access points` then on `Load rooms`. This triggers a process that reads rooms from your core/data/rooms.json file and creates entries in datastore.
   # Authorize the system to access Google Calendar (calendar specified in CALENDAR_BATCH_EVENT_FEED in the settings.py file above). Go back to the `Admin interface` and click on `Configuration`. Then click `Get calendar token` and login with the account information who has write access to the calendar. You should see a calendar token in the configuration list.
 
 
-*That's it!* To make sure that everything works correctly try out some tasks from the [WikiHelp help page].
+*That's it!* To make sure that everything works correctly try to [CreateActivity create an activity].
 
 For more information on Google App Engine SDK
 [http://code.google.com/appengine/docs/python/gettingstarted/devenvironment.html click here].
