@@ -27,4 +27,4 @@ Click on "Enroll students" link from the above roster page to reach the bulk reg
    # When done click on "Back to roster" to go back to the roster page.
 
 == See it in Action! ==
-<wiki:video url="http://www.youtube.com/watch?v=RrDHrwLUtvk">
+<wiki:video url="http://www.youtube.com/watch?v=LpFCdc2lniA">
