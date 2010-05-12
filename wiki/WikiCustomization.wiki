@@ -14,7 +14,7 @@ Check here for [WikiInstall installation instructions]
 
 The following services can be custom written and replaced easily on the site. The service modules can be customized in settings.py file user SERVICE_PROVIDER_MODULES.
 
-=== DatastoreSyncService ===
+=== Datastore Sync Service ===
 
 This service is used to actively notify datastore changes to an external system. Useful to notify external system of new courses, registrations and their changes etc. The default module provided doesn't communicate to any external site. Interface defined in {{{core.service_interfaces.DatastoreSyncService}}}.
 
