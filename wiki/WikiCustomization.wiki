@@ -18,15 +18,15 @@ The following services can be custom written and replaced easily on the site. Th
 
 This service is used to actively notify datastore changes to an external system. Useful to notify external system of new courses, registrations and their changes etc. The default module provided doesn't communicate to any external site. Interface defined in {{{core.service_interfaces.DatastoreSyncService}}}.
 
-=== SearchService ===
+=== Search Service ===
 
 This service is used to search activities and their sessions. The default module doesn't provided any search functionality, users need to write their own preferred search mechanism and decide what model properties to search on etc. Interface defined in {{{core.service_interfaces.SearchService}}}.
 
-=== RoomInfoService ===
+=== Room Info Service ===
 
 This service is used to inform the site with conference rooms that are available for scheduling sessions. The service can be setup to be called periodically to update the list of rooms available on a regular basis. Interface defined in {{{core.service_interfaces.RoomInfoService}}}.
 
-=== UserInfoService ===
+=== User Info Service ===
 
 This service is used to to gather user information. This service is used both to evaluate business rules and to display user information. Information like user employment types, employee manager etc is provided by this service. Interface defined in {{{core.service_interfaces.UserInfoService}}}.
 
@@ -38,8 +38,8 @@ It is possible to further customize Cloud Course, with some more work.
 
 Cloud Course is configured to replace mailto links with gmail links automatically. If you want to use regular `<href=mailto:>` links instead:
 
-  * Update `core/templatetags/format.py` EmailUrl method.
-  * Update `core/static/scripts/roster.js` roster.emailAll method.
+  * Update `core/templatetags/format.py` "EmailUrl" method.
+  * Update `core/static/scripts/roster.js` "emailAll" method.
 
 == Calendar updates ==
 
