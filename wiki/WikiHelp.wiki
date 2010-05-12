@@ -3,7 +3,7 @@
 
 If you are looking for install instructions [WikiInstall check here].
 
-== HowTo ==
+== Using Cloud Course ==
   * [CreateActivity Create an Activity].
   * [CreateSession Create a Session].
   * [ManageRoster Manager Session Roster].
