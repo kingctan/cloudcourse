@@ -38,8 +38,8 @@ It is possible to further customize Cloud Course, with some more work.
 
 Cloud Course is configured to replace mailto links with gmail links automatically. If you want to use regular `<href=mailto:>` links instead:
 
-  * Update `core/templatetags/format.py` "EmailUrl" method.
-  * Update `core/static/scripts/roster.js` "emailAll" method.
+  * Update `core/templatetags/format.py` EmailUrl method.
+  * Update `core/static/scripts/roster.js` roster.emailAll method.
 
 == Calendar updates ==
 
