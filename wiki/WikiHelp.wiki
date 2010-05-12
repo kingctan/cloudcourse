@@ -12,3 +12,4 @@
   * [RegisterSession Register for a session].
 
 == FAQs ==
+  * [CCFAQ FAQ Link]
