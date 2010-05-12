@@ -1,3 +1,5 @@
+#summary Customize a cloud course instance.
+
 Check here for [WikiInstall installation instructions]
 
 = Settings.py =
