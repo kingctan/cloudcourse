@@ -16,9 +16,9 @@ Get [http://code.google.com/appengine/downloads.html Google App Engine SDK] for 
   # Run make.sh. Make sure it has execute permissions (chmod +x make.sh). This will compile the javascript and css files. (compiled files will be suffixed by the version from app.yaml). This should be done on subsequent application uploads if there are any changes to the javascript/css/app.yaml files.
 
 
-== Deploy ==
+== Deployment ==
 
-Assuming you have created an application of the app id specified in the app.yaml and have the Google App Engine SDK for python installed you can now upload the app.
+Assuming you have created an application of the app id specified in the app.yaml and have the Google App Engine SDK for python installed you can now [http://code.google.com/appengine/docs/python/tools/uploadinganapp.html#Uploading_the_App upload the app].
 
 {{{$GOOGLE_APPENGINE_SDK_DIR/appcfg.py update $CLOUD_COURSE_DIR}}}
 
@@ -30,12 +30,8 @@ Assuming you have created an application of the app id specified in the app.yaml
   # Authorize the system to access Google Calendar (calendar specified in CALENDAR_BATCH_EVENT_FEED in the settings.py file above). Go back to the `Admin interface` and click on `Configuration`. Then click `Get calendar token` and login with the account information who has write access to the calendar. You should see a calendar token in the configuration list.
 
 
-That's it! To make sure that everything works correctly, create some activity and enroll. You should receive email notifications and your calendar should be updated accordingly.
-Check out the [WikiHelp help page] for more information.
- 
-
-Check the CloudCourse [WikiCustomization custumization page] for more details on how to customize your instance.
+*That's it!* To make sure that everything works correctly try out some tasks from the [WikiHelp help page].
 
 
-For more information on using Google App Engine SDK:
-[http://code.google.com/appengine/docs/python/gettingstarted/devenvironment.html App Engine getting started]
+For more information on Google App Engine SDK
+[http://code.google.com/appengine/docs/python/gettingstarted/devenvironment.html click here].
