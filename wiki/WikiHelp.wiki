@@ -1,9 +1,8 @@
 #labels help,doc
-Help for Cloud Course
+#Help for Cloud Course
+For details on how to install Cloud Course [WikiInstall check here].
 
-= Introduction =
-
-This page describes how to use Cloud Course.
-For details on how to install Cloud Course, [WikiInstall check here].
-
-= Details =
+== HowTo ==
+  * [CreateActivity Create an Activity].
+  * [CreateSession Create a Session].
+  * [ManageRoster Manager Session Roster].
