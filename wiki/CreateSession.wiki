@@ -24,7 +24,7 @@
   # Create additional timeslots by clicking "Add timeslot". There can be multiple timeslots if the session is being conducted with breaks in between or over multiple days. Students registered for a session are expected to attend all timeslots.
 
 == See it in Action! ==
-<wiki:video url="http://www.youtube.com/watch?v=RrDHrwLUtvk">
+<wiki:video url="http://www.youtube.com/watch?v=UhQURxPmc-k">
 
 
 Next [ManageRoster manage a roster].
