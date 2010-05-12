@@ -30,8 +30,5 @@ Assuming you have created an application of the app id specified in the app.yaml
   # Authorize the system to access Google Calendar (calendar specified in CALENDAR_BATCH_EVENT_FEED in the settings.py file above). Go back to the `Admin interface` and click on `Configuration`. Then click `Get calendar token` and login with the account information who has write access to the calendar. You should see a calendar token in the configuration list.
 
 
-*That's it!* To make sure that everything works correctly try out some tasks from the [WikiHelp help page].
-
-
-For more information on Google App Engine SDK
+*That's it!* To make sure that everything works correctly try out some tasks from the [WikiHelp help page]. For more information on Google App Engine SDK
 [http://code.google.com/appengine/docs/python/gettingstarted/devenvironment.html click here].
