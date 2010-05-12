@@ -23,7 +23,7 @@
    # Click Create.
 
 == See it in Action! ==
-<wiki:video url="http://www.youtube.com/watch?v=RrDHrwLUtvk">
+<wiki:video url="http://www.youtube.com/watch?v=Huo-SuB7VFI">
 
 
 Next [CreateSession create a session].
