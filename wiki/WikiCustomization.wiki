@@ -26,7 +26,7 @@ This service is used to search activities and their sessions. The default module
 
 === Room Info Service ===
 
-This service is used to inform the site with conference rooms that are available for scheduling sessions. The service can be setup to be called periodically to update the list of rooms available on a regular basis. Interface defined in {{{core.service_interfaces.RoomInfoService}}}.
+This service is used to inform the site of the conference rooms that are available for scheduling sessions. The service can be setup to be called periodically to update the list of rooms available on a regular basis. Site admins can also manually call for the rooms in the system to be updated by click on "Admin interface > Access Points > Load Rooms" this would start a background process that will update the rooms by querying the rooms info service. Interface defined in {{{core.service_interfaces.RoomInfoService}}}.
 
 === User Info Service ===
 
