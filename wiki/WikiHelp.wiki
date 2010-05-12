@@ -1,7 +1,9 @@
 #summary Help for CloudCourse.
 #labels help,doc
 
-If you are looking for install instructions [WikiInstall check here].
+== Setup ==
+  * [WikiInstall Install instructions].
+  * [WikiCustomization Site customization].
 
 == Using Cloud Course ==
   * [CreateActivity Create an Activity].
