@@ -1,0 +1,29 @@
+{% extends 'register_popup_form.html' %}
+{% load format %}
+{% block timeslots %}
+    {% for schedule in schedule_list %}
+      <tr>
+        <th>{{ schedule.start_time_local|full_datetime }}</th>
+        <td>
+        {% if schedule.access_point_list|length_is:1 %}
+          <input type="hidden" name="schedule_{{ schedule.key }}" value="{{ schedule.access_point_list.0.key }}"/>{{ schedule.access_point_list.0.display }}
+        {% else %}
+          <select name="schedule_{{ schedule.key }}">
+            {% for access_point in schedule.access_point_list %}
+              <option value="{{ access_point.key }}" {% if forloop.first %}selected="selected"{% endif %}>{{ access_point.display }}</option>
+            {% endfor %}
+          </select>
+
+        {% endif %}
+
+        </td>
+      </tr>
+    {% endfor %}
+
+{% endblock %}
+<!--
+Copyright 2010 Google Inc. All Rights Reserved.
+
+Use of this source code is governed by an Apache 2.0 License.
+See the COPYING file for details.
+-->

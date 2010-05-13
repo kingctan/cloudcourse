@@ -1,0 +1,60 @@
+{% extends 'show_roster_base.html' %}
+
+{% block nav-title %}
+<a href="{% url ShowProgram program_key=program.key %}">{{ program.name }}</a> > Roster
+{% endblock %}
+
+{% block roster-content %}
+          <!-- roster -->
+<form>
+<table class="message">
+<tr>
+  <th>Students</th>
+  <td>
+    <textarea id='id-emails' cols="80" rows="2" wrap="virtual"></textarea> <br /><span class="hint">For multiple users, please seperate with a comma.</span> <br /> <br />
+  </td>
+</tr>
+<tr>
+  <th>Notification</th>
+  <td>
+    <input type="checkbox" id="checkbox-notifications" checked/>Send registration confirmation email to students
+  </td>
+</tr>
+<tr>
+  <th>Force-register</th>
+  <td>
+    <input type="checkbox" id="checkbox-force-status"/>Force-register students without waitlist management
+  </td>
+</tr>
+<tr>
+  <th></th>
+  <td>
+    <div id='list-enroll'>
+      <div class="list-add">
+        <ul id='list-add'></ul>
+      </div>
+    </div>
+  </td>
+</tr>
+<tr>
+  <th></th>
+  <td>
+    <input type="button" value="Add students" id="id_submit_button"
+    onClick="javascript:addStudents();" /> <input type="button" value="Back to roster"  onClick="window.location='{{ request.GET.referrer }}'" />
+  </td>
+</tr>
+</table>
+</form>
+<script type="text/javascript">
+roster.initListeners('{% url ValidateEmails %}');
+function addStudents() {
+  roster.addStudents('{% url ValidateEmails %}','{% url RegisterPopupFormMultiple program_key=program.key activity_key=activity.key %}');
+}
+</script>
+{% endblock %}
+<!--
+Copyright 2010 Google Inc. All Rights Reserved.
+
+Use of this source code is governed by an Apache 2.0 License.
+See the COPYING file for details.
+-->

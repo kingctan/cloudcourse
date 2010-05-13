@@ -1,0 +1,83 @@
+/*
+ * Copyright 2007 Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an Apache 2.0 License.
+ * See the COPYING file for details.
+ */
+
+/* Styles for goog.ui.Dialog */
+.modal-dialog-bg {
+  position: absolute;
+  background-color: #999;
+  top: 0;
+  left: 0;
+}
+
+.modal-dialog {
+  position: absolute;
+  padding: 8px;
+  background-color: #C1D9FF;
+  border: 1px solid #3A5774;
+  font-family: arial, sans-serif;
+  width: 475px;
+  color: #000;
+}
+
+.modal-dialog a, .modal-dialog a:link, .modal-dialog a:visited  {
+  color: #0066cc;
+  cursor: pointer;
+}
+
+.modal-dialog-title {
+  position: relative;
+  background-color: #E0EDFE;
+  color: #000000;
+  padding: 8px 15px 8px 8px;
+  font-size: 12pt;
+  font-weight: bold;
+  vertical-align: middle;
+  cursor: pointer;
+  cursor: hand;
+}
+
+.modal-dialog-title-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  width: 15px;
+  height: 15px;
+  background: url("/images/dialog_close_box.gif") no-repeat center;
+  cursor: default;
+}
+
+.modal-dialog-content {
+  background-color: #fff;
+  font-size: 10pt;
+  padding: 8px;
+}
+
+.modal-dialog-buttons {
+  padding: 8px;
+  background-color: #fff;
+  text-align: center;
+}
+
+#confirm-info {
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.modal-dialog-content table {
+  margin-top: -7px;
+}
+
+.modal-dialog-content th {
+  text-align: left;
+  padding: 5px 15px 5px 0;
+  vertical-align: middle;
+}
+
+.modal-dialog-content td {
+  padding: 5px 0;
+  vertical-align: middle;
+}

@@ -1,0 +1,43 @@
+{% if debug %}
+
+<script src="/closure-library-read-only/closure/goog/base.js"></script>
+{% block top_entries %}
+{% endblock %}
+
+<script type="text/javascript">
+      goog.require('goog.date');
+      goog.require('goog.dom');
+      goog.require('goog.dom.classes');
+      goog.require('goog.events');
+      goog.require('goog.events.EventType');
+      goog.require('goog.events.KeyCodes');
+      goog.require('goog.events.KeyHandler.EventType');
+      goog.require('goog.locale');
+      goog.require('goog.locale.formatting');
+      goog.require('goog.i18n.DateTimeFormat');
+      goog.require('goog.i18n.DateTimeParse');
+      goog.require('goog.net.XhrIo');
+      goog.require('goog.string');
+      goog.require('goog.ui.AutoComplete.ArrayMatcher');
+      goog.require('goog.ui.AutoComplete.Basic');
+      goog.require('goog.ui.AutoComplete.InputHandler');
+      goog.require('goog.ui.AutoComplete.Renderer');
+      goog.require('goog.ui.Dialog');
+      goog.require('goog.ui.InputDatePicker');
+      goog.require('goog.ui.LabelInput');
+      goog.require('goog.ui.MenuButton');
+      goog.require('goog.ui.Tooltip');
+      {% block goog_require %}
+      {% endblock %}
+</script>
+<script type="text/javascript" src="/scripts/dialog.js"></script>
+<script type="text/javascript" src="/scripts/roster.js"></script>
+<script type="text/javascript" src="/scripts/search.js"></script>
+<script type="text/javascript" src="/scripts/sessions.js"></script>
+<script type="text/javascript" src="/scripts/approvals.js"></script>
+{% else %}
+    {% load format %}
+    <script type="text/javascript" src="/scripts/scripts_compiled_{% app_version %}.js"></script>
+    {% block compiled %}
+    {% endblock %}
+{% endif %}

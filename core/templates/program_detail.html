@@ -1,0 +1,235 @@
+{% extends 'base.html' %}
+{% load format %}
+
+{% block extra-head %}
+<style type="text/css">
+/* parent container in which this page fits */
+table.container td.info {
+  padding: 0;
+  height: 200px;
+}
+</style>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="//www.google.com/jsapi"></script>
+<script type="text/javascript">
+  google.load("annotations", "1.x", {"other_params": "dev=1&appid=95&hl=en"});
+</script>
+<script type="text/javascript">
+  function initRatings() {
+    google.annotations.setInlineMode(true);
+    google.annotations.createAll();
+    google.annotations.fetch();
+  }
+  window.onload = initRatings;
+</script>
+{% include "javascript.html" %}
+{% endblock %}
+
+{% block nav-title %}
+Activity
+{% endblock %}
+
+{% block content %}
+
+<div id="activity-container">
+  <div id="header">
+    {% if user_can_edit_program and not program.to_be_deleted %}
+      <input type="button" value="Delete activity" onClick="dialog.confirmAjaxDialog('{% url DeleteProgramPopupForm program_key=program.key %}', 'Confirm deletion');" id="delete-activity" />
+      <input type="button" value="Edit activity" onClick="window.location='{% url UpdateProgram program_key=program.key %}?oncancel={{ request.get_full_path }}'" id="edit-activity" />
+    {% endif %}
+    <table id="activity-header">
+      <tr>
+        <td>
+          <h2>{{ program.name }}</h2>
+        </td>
+        <td>
+          <div id="ratings-box" g:type="RatingPanel" g:entity.url="https://{{ request.get_host }}{{ request.get_full_path }}" g:inline="true"></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  {% if program.to_be_deleted %}
+    <div id="discontinued-program" class="discontinued-program">
+      This activity is discontinued and scheduled for deletion.
+    </div>
+  {% endif %}
+  <div id="overview">
+    <h3>Description</h3>
+    <div id="info-box">
+      <ul>
+        <li>
+          <span class="category">Activity type</span>: {{ program.instruction_type }}
+        </li>
+        <li>
+          <span class="category">Level</span>: {% if program.program_level %}{{ program.program_level }}{% else %}None{% endif %}
+        </li>
+        <li>
+          <span class="category">Contact</span>: <a  target="_blank" href="{{ contact_email|email_url }}"> {{ contact_name }}</a>
+        </li>
+        <li>
+          <span class="category">Offered by</span>: {{ program.department }}
+        </li>
+        {% if program.restricted %}
+        <li>
+          <span class="category">Restricted to</span>: {{ program.restricted }}
+        </li>
+        {% endif %}
+        {% if needs_manager_approval %}
+        <li>
+          <span class="category">Manager approval required</span>: yes
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+
+    <!--TODO(user): NOT SAFE!!!. Need to make this safe using a library-->
+    <div id="description"> {{ program.description|massage_html|safe }}</div>
+    </div>
+    <div class="clear"></div>
+
+    <div id="sessions">
+      <h3>Sessions</h3>
+      {% if user_can_create_activity and not program.to_be_deleted %}
+      <input  type="button" id="schedule-session" onClick="window.location='{% url CreateActivity program_key=program.key %}?referrer={{ request.get_full_path }}'" value="Schedule a session">
+      {% endif %}
+      <br/>
+      {% if single_activity_mode %}
+        <div class='margin-bottom'>
+          Viewing only 1 out of
+          <strong>{{ activity_count }}</strong>
+          sessions.
+          <a href="{% url ShowProgram program_key=program.key %}">View all</a>
+        </div>
+      {% endif %}
+      {% if activity_list %}
+        <table class="session-list">
+          <tr>
+            <th id="day-header">Day</th>
+            <th id="date-header">Date</th>
+            <th id="time-header">Time</th>
+            <th id="loc-header">Location</th>
+            <th id="instructor-header">Instructor</th>
+            <th id="register-status-header">Status</th>
+            <th id="register-header"></th>
+            <th id="admin-header"></th>
+          </tr>
+          {% for activity in activity_list %}
+          <tr>
+            <td>
+              {% for schedule in activity.sorted_schedules %}
+                {{ schedule.start_time_local|weekday }}<br />
+              {% endfor %}
+            </td>
+            <td>
+            {% for schedule in activity.sorted_schedules %}
+              {{ schedule.start_time_local|format_date }}<br />
+            {% endfor %}
+            </td>
+            <td>
+              {% for schedule in activity.sorted_schedules %}
+                {{ schedule.start_time_local|format_time }} - {{ schedule.end_time_local|format_time }} {{ schedule.end_time_local|timezone }}
+                {% if schedule.notes %}
+                  <img src="/images/notes.gif" class="note" title="{{ schedule.notes }}" alt="notes" />
+                {% endif %}
+                <br />
+              {% endfor %}
+            </td>
+            <td>
+              {% for location in activity.locations %}
+                {{ location }}{% if not forloop.last %},{% endif %}
+              {% endfor %}
+              {% if activity.locations_secondary %}
+              <br/>
+              <a title='Show secondary locations' id="less_locations_{{forloop.parentloop.counter}}_{{forloop.counter}}" onClick="javascript:dialog.displayRooms('{{forloop.parentloop.counter}}_{{forloop.counter}}', true);" href='#'>
+              <span class="bold">{{ activity.locations_secondary|length }}</span> more &raquo;</a>
+              <div id='more_locations_{{forloop.parentloop.counter}}_{{forloop.counter}}' class='hidden'>
+              {% for location in activity.locations_secondary %}
+                {{ location }}{% if not forloop.last %},{% endif %}
+              {% endfor %}
+              <br/>
+              <a href="#" onClick="javascript:dialog.displayRooms('{{forloop.parentloop.counter}}_{{forloop.counter}}', false);">
+              &laquo; show less</a>
+              </div>
+              {% endif %}
+            </td>
+            <td>
+              {% for schedule in activity.sorted_schedules %}
+                {% for person in schedule.instructor_list %}
+                  <a  target="_blank" href="{{ person.email|email_url }}">{{ person.name }}</a>
+                  {% if not forloop.last %},{% endif %}
+                {% endfor %}
+                <br/>
+              {% endfor %}
+            </td>
+            <td>
+              {% if activity.user_register_status %}
+                <span class="status">{{ activity.user_register_status }}</span>
+              {% else %}{% if activity.predict_restricted %}
+                <span class="font-black bold">{{ activity.predict_restricted }}</span>
+              {% else %}{% if activity.predict_full %}
+                <span class="font-red bold">{{ activity.predict_full }}</span>
+              {% else %}{% if activity.predict_open %}
+                <span class="font-green bold">{{ activity.predict_open }}</span>
+              {% endif %}{% endif %}{% endif %}{% endif %}
+
+              {% if activity.register_status_reason %}
+                <img id="id_status_reason" class="note" src="/images/question_mark.gif"
+                 title="{{ activity.register_status_reason }}" alt="reasons"/>
+              {% endif %}
+
+              {% if activity.waitlist_rank_info %}
+                <br/><div class="roster_number_info">({{ activity.waitlist_rank_info }})</div>
+              {% endif %}
+            </td>
+            <td class="register-col">
+                {% if activity.user_register_status %}
+                  <input type="button" value="Cancel"
+                    onClick="dialog.confirmAction('Are you sure you want to cancel your enrollment?', '{% url UserUnregister program_key=program.key activity_key=activity.key%}', 'Confirm cancellation');">
+                {% else %}
+                  <input type="button" {% if activity.predict_restricted or activity.to_be_deleted %}disabled{% endif %} value="Register"
+                   onClick="dialog.confirmAjaxDialog('{% url RegisterPopupFormSingle program_key=program.key activity_key=activity.key %}', 'Confirm registration');" />
+                {% endif %}
+            </td>
+            <td class="admin-actions">
+              {% if activity.to_be_deleted %}
+                <div id="discontinued-activity" class="discontinued-activity">
+                  To be deleted.
+                </div>
+              {% else %}
+                <a href="{% url ShowActivity activity_key=activity.key %}">
+                  <img class="admin-action" src="/images/link.gif" title="displays only this session so you can copy the URL and send it to students."  alt="link"/>
+                </a>
+                <a href="{% url ShowRoster activity_key=activity.key order_by='status' %}">
+                  <img class="admin-action" src="/images/roster.gif" title="roster" alt="roster" />
+                </a>
+                {% if activity.user_can_edit_activity %}
+                <a href='{% url UpdateActivity activity_key=activity.key %}?referrer={{ request.get_full_path }}'>
+                  <img class="admin-action" src="/images/edit.gif" title="edit" alt="edit" />
+                </a>
+                <a href="javascript:void;" onClick="dialog.confirmAjaxDialog('{% url DeleteActivityPopupForm activity_key=activity.key %}', 'Confirm deletion');">
+                  <img class="admin-action" src="/images/delete.gif" title="delete" alt="delete" />
+                </a>
+                {% endif %} <!-- user can edit activity -->
+              {% endif %} <!-- to be deleted -->
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+      {% else %} <!-- no activity_list -->
+        <div id="no-sessions-msg">
+          Sorry, no sessions are available at this time.
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+
+{% endblock %}
+<!--
+Copyright 2010 Google Inc. All Rights Reserved.
+
+Use of this source code is governed by an Apache 2.0 License.
+See the COPYING file for details.
+-->

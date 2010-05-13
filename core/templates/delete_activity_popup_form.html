@@ -1,0 +1,21 @@
+<form action="{% url DeleteActivity activity_key=activity_key %}" id="id_form" method="post" enctype="multipart/form-data">
+
+<input type="hidden" name="activity_key" value="{{ activity_key }}"/>
+
+<p>Are you sure you want to delete this session?
+ </p>
+  
+  {% if students_count %}
+
+  There are currently {{ students_count }} users enrolled and will be unregistered.
+ {% else %}
+ There are currently no users enrolled.
+ {% endif %}
+ 
+</form>
+<!--
+Copyright 2010 Google Inc. All Rights Reserved.
+
+Use of this source code is governed by an Apache 2.0 License.
+See the COPYING file for details.
+-->

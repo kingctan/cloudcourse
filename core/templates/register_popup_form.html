@@ -1,0 +1,30 @@
+{% if users %}
+<form action="{% url UserRegisterAjax %}" id="id_form" method="post" enctype="multipart/form-data">
+{% else %}
+<form action="{% url UserRegister %}" id="id_form" method="post" enctype="multipart/form-data">
+{% endif %}
+<input type="hidden" name="program_id" value="{{ program_key }}"/>
+<input type="hidden" name="activity_id" value="{{ activity_key }}"/>
+<input type="hidden" id='user_emails' value="{{ users }}" name="users"/>
+<input type="hidden" value="{{ notify }}" name="notify"/>
+<input type="hidden" value="{{ force_status }}" name="force_status"/>
+
+  You have opted to register
+  {% if users_count %}
+  {{ users_count }} users
+  {% endif %}
+  for the following sessions: <br/><br/>
+  <div align="center">
+  <table>
+   {% block timeslots %}
+   {% endblock %}
+  </table>
+  </div>
+
+</form>
+<!--
+Copyright 2010 Google Inc. All Rights Reserved.
+
+Use of this source code is governed by an Apache 2.0 License.
+See the COPYING file for details.
+-->

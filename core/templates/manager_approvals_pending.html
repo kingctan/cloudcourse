@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load format %}
+{% block extra-head %}
+<style type="text/css">
+/* parent container in which this page fits */
+table.container td.info {
+  padding: 0;
+  height: 200px;
+}
+</style>
+{% endblock %}
+
+{%block nav-title %}Approvals{%endblock%}
+
+{% block nav-approvals-class %}
+selected
+{% endblock %}
+
+{% block content %}
+
+<form action="{% url ShowManagerApprovals %}" id="id-approval-form" method="post" enctype="multipart/form-data">
+<input type="hidden" id="id-approval-keys" name="approval_keys" value=""/>
+<input type="hidden" id="id-approve" name="approve" value="0"/>
+</form>
+
+<div class='approval-action-box'>
+  <input type="button" value="Approve" onClick="javascript:approvals.submitManagerApprovals(true)"/>
+  <input type="button" value="Reject" onClick="javascript:approvals.submitManagerApprovals(false)"/>
+</div>
+
+<table class="approvals-table">
+  <tr>
+    <th width="20">
+      <input type="checkbox" id="id-select-all" href="javascript:void(0)" onClick="javascript:approvals.toggleAllPendingApprovals()" />
+    </th>
+    <th class="profile-pic"></th>
+    <th width="162">Candidate</th>
+    <th width="108"  class="profile-pic">Date requested </th>
+    <th width="400">Class</th>
+    <th width="262">Approval</th>
+  </tr>
+  {% for approval in pending_approvals %}
+    <tr class="enrolled-student">
+      <td ><input type="checkbox" class="approve-select" id="{{ approval.key }}"/></td>
+      <td class="profile-pic"><img src="{% if approval.candidate_info %}{{ approval.candidate_info.photo_url }}{% else %}/images/person.png{% endif %}"/></td>
+      <td>
+        <a target="_blank" href="{{ approval.candidate.email|email_url }}">{{ approval.candidate.nickname }}</a>
+        <br/><span class="hint zero-left-margin">{{ approval.candidate_info.title }}</span>
+        <br/><span class="hint zero-left-margin">{{ approval.candidate_info.location }}</span>
+      </td>
+     <td> {{ approval.queue_time_local|format_date }} </td>
+      <td>
+        <a href="{% url ShowActivity activity_key=approval.activity.key %}">{{ approval.activity }}</a>
+        <br/>{{ approval.program.description|safe|striptags|truncatewords:10 }}
+      </td>
+      <td>
+        <a class="approval-action-approve" href="javascript:void(0)" onclick="javascript:approvals.submitManagerApprovalForId('{{ approval.key }}', true)">Approve</a>
+        /<a class="approval-action-disapprove" href="javascript:void(0)" onclick="javascript:approvals.submitManagerApprovalForId('{{ approval.key }}', false)">Reject</a>
+      </td>
+    </tr>
+  {% endfor %}
+</table>
+{% endblock %}
+<!--
+Copyright 2010 Google Inc. All Rights Reserved.
+
+Use of this source code is governed by an Apache 2.0 License.
+See the COPYING file for details.
+-->

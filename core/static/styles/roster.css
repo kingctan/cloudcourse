@@ -1,0 +1,169 @@
+/*
+ * Copyright 2009 Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an Apache 2.0 License.
+ * See the COPYING file for details.
+ */
+
+/**
+ * All Rights Reserved.
+ *
+ * Roster styles.
+ *
+ */
+
+#roster-list {
+  border-collapse: collapse;
+  width: 100%;
+}
+#roster-list th {
+ vertical-align: top;
+  padding: .3em;
+  background: #F0F1F5;
+  border-bottom: 1px solid #DFDEE3;
+  border-top: 1px solid #DFDEE3;
+}
+#roster-list td {
+  vertical-align: middle;
+  padding: .3em;
+  border-bottom: 1px solid #DFDEE3;
+  font-size: 12px;
+}
+table.roster-actions {
+  width: 100%;
+}
+.roster-actions td {
+  width: 50%;
+  padding: 5px;
+}
+.session-box {
+  border: 1px solid #d0dfce;
+  background: #E0EDFE;
+  margin-bottom: 1em;
+  padding: 1em;
+}
+.session-details {
+  width: 100%;
+  background: #ECF7FF;
+}
+.session-details td {
+  padding: .5em;
+}
+.session-details .category {
+  color: #333;
+  font-weight: bold;
+  margin-right: 5px;
+}
+.register-button {
+  font-size: 140%;
+}
+.session-admin-links {
+  color: #ccc;
+  margin-top: 8px;
+  margin-left: 3px;
+  margin-right: 5px;
+}
+.session-admin-links a{
+  color: #06c;
+}
+.session-admin-links .actions {
+  float: right;
+}
+#ratings-box td{
+  vertical-align: middle;
+}
+.attended-choice {
+ white-space: nowrap;
+ margin-right: 3px;
+}
+
+#id_session-details {
+  margin-left: 55px;
+}
+.message td, .message th {
+  padding-bottom: 1em;
+  padding-right: 15px;
+  vertical-align: top;
+}
+.message th {
+  text-align: right;
+}
+.message {
+  margin-top: 20px;
+  margin-left: 10px;
+}
+#id_submit_button {
+  font-weight: bold;
+}
+h3.print {
+  border-bottom: 1px solid #000;
+  padding-bottom: 3px;
+  font-size: 120%;
+  margin-bottom: 0;
+}
+.print .wrapper {
+  padding: 1em 2em;
+}
+.print .session td {
+  padding: 3px 0;
+  font-size: 95%;
+}
+.print .session th {
+  padding: 3px 0;
+  padding-right: 8px;
+  font-size: 95%;
+}
+.print #roster-list {
+  border-collapse: collapse;
+  width: 100%;
+}
+.print #roster-list th {
+ vertical-align: top;
+  padding: 8px;
+  background: #F0F1F5;
+  border: 1px solid #000;
+  font-size: 90%;
+}
+.print #roster-list td {
+  vertical-align: middle;
+  padding: 8px;
+  border: 1px solid #000;
+  font-size: 90%;
+  width: 10%;
+}
+#list-enroll .list-add {
+  width: 400px;
+  margin-left: 5px;
+}
+#list-enroll .list-add  ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+#list-enroll .list-add ul li{
+  padding: 3px 0;
+  position: relative;
+}
+#list-enroll a.remove {
+  text-decoration: none;
+  position: absolute;
+  top: 7px;
+  right: -2px;
+  background: url('/images/x_blue.gif') no-repeat 0 0;
+  height: 12px;
+  width: 12px;
+}
+#list-enroll a.enrolled {
+  text-decoration: none;
+  position: absolute;
+  top: 7px;
+  right: -2px;
+  background: url('/images/check.gif') no-repeat 0 0;
+  height: 16px;
+  width: 16px;
+}
+span.roster-user-enrolled {
+  font-weight: bold;
+}
+
+

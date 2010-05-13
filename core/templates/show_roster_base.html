@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load format %}
+{% block nav-title %}
+<a href="{% url ShowProgram program_key=program.key %}">{{ program.name }}</a> > Roster
+{% endblock %}
+{% block extra-head %}
+<style type="text/css">
+/* parent container in which this page fits */
+table.container td.info {
+  padding: 0;
+}
+</style>
+{% endblock %}
+{% block content %}
+          <!-- session info -->
+          <table class="session-details">
+            <tr>
+              <td>
+                  <div class='line-height-150'> Session: <span class="bold">{{ activity.start_time_local|full_datetime}} to {{ activity.end_time_local|full_datetime }} </span>
+                      <a href="javascript:void(0)" onClick="javascript:roster.toggleSessionDetails()"  id="id_show-details">Show
+                      details</a>
+                      <a href="javascript:void(0)" onClick="javascript:roster.toggleSessionDetails()" id="id_hide-details" class="hidden">Hide details</a><br />
+                    <div id="id_session-details"  class="hidden"/>
+                    Instructors: <a href="#">
+                    {% for person in activity.instructor_list %}
+                    <a  target="_blank" href="{{ person.email|email_url }}">{{person.name}}</a>{% if not forloop.last %},{% endif %}
+                    {% endfor %}
+                    <br />Primary location:
+                    {% for access_point in activity.access_points %}
+                      {{access_point}}{% if not forloop.last %},{% endif %}
+                    {% endfor %}
+                    {% if activity.access_points_secondary %}
+                    <br/>Secondary locations:
+                    {% for access_point in activity.access_points_secondary %}
+                      {{access_point}}{% if not forloop.last %},{% endif %}
+                    {% endfor %}
+                    {% endif %}
+                  </div>
+                  Enrolled: <span class="bold">{{enrolled_count}}</span> out of {{enrolled_count|add:waitlisted_count}}
+                  <span class='margin-left-15'>Waitlisted: {{waitlisted_count}}</span></div>
+            </td>
+            </tr>
+          </table>
+          <!-- end session info -->
+          <!-- roster -->
+          {% block roster-content %}{% endblock %}
+
+          {% endblock %}
+
+<!--
+Copyright 2010 Google Inc. All Rights Reserved.
+
+Use of this source code is governed by an Apache 2.0 License.
+See the COPYING file for details.
+-->

@@ -1,0 +1,10 @@
+cron:
+- description: offline process
+  url: /tasks/offline/
+  schedule: every 1 minutes
+
+# Uncomment the following lines to enable sync service
+#- description: sync datastore entities to external storage/service.
+#  url: /tasks/performquerywork/sync_datastore_entities
+#  schedule: every 1 minutes
+

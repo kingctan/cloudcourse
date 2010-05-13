@@ -1,0 +1,30 @@
+<!--
+Copyright 2010 Google Inc. All Rights Reserved.
+
+Use of this source code is governed by an Apache 2.0 License.
+See the COPYING file for details.
+-->
+{% extends 'register_popup_form.html' %}
+{% load format %}
+{% block timeslots %}
+    {% for schedule in schedule_list %}
+      <tr>
+        <th>{{ schedule.start_time_local|full_datetime }}</th>
+      </tr>
+    {% endfor %}
+     <tr>
+      <td>
+        {% if common_access_points|length_is:1 %}
+        <input type="hidden" name="schedule_" value="{{ common_access_points.0.key }}"/>{{ common_access_points.0.display }}
+        {% else %}
+Please select location:<br/><br/>
+        <select name="schedule_">
+          {% for access_point in common_access_points %}
+            <option value="{{ access_point.key }}" {% if forloop.first %}selected="selected"{% endif %}>{{ access_point.display }}</option>
+          {% endfor %}
+        </select>
+
+        {% endif %}
+      </td>
+      </tr>
+{% endblock %}

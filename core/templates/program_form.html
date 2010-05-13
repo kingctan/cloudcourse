@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% block extra-head %}
+<style type="text/css">
+/* parent container in which this page fits */
+table.container td.info {
+  padding: 1em;
+}
+</style>
+{% endblock %}
+{% block nav-title %}
+{% if is_update %}
+Edit activity
+{% else %}
+Create new activity
+{% endif %}
+{% endblock %}
+
+
+{% block js %}
+{% include "javascript-editor.html" %}
+{% endblock %}
+
+
+{% block content %}
+
+<form action="" method="post" enctype="multipart/form-data">
+<table id='program-form' class="forms">
+  <tr>
+    <th>{{ form.name.label_tag }}</th>
+    <td> {{ form.name }} {{ form.name.errors }}
+  </tr>
+  <tr>
+    <th>{{ form.instruction_type.label_tag }}</th>
+    <td>
+    <div id="types">
+      {{ form.instruction_type }}
+    </div>
+     {{ form.instruction_type.errors }}
+    </td>
+  </tr>
+  <tr>
+    <th>{{ form.description.label_tag }}</th>
+    <td><div id="description_toolbar"></div><div id="description_edit"></div>
+    {{ form.description }} {{ form.description.errors }}</td>
+  </tr>
+  <tr>
+    <th>{{ form.level.label_tag }}<div class="optional">optional</div></th>
+    <td>
+      {{ form.level }}  {{ form.level.errors }}
+    </td>
+  </tr>
+  <tr>
+    <th>Restricted to <img id='id_question_restricted' class='help-tooltip'
+        src='/images/question_mark.gif'/></th>
+    <td>
+    <div id="restrictions">
+      {{ form.allow_employee }} {{ form.allow_employee.label_tag }}
+      {{ form.allow_intern }} {{ form.allow_intern.label_tag }}
+      {{ form.allow_contractor }} {{ form.allow_contractor.label_tag }}
+      {{ form.allow_vendor }} {{ form.allow_vendor.label_tag }}
+      {{ form.allow_all }} {{ form.allow_all.label_tag }}
+    </div>
+    <div>{{ form.allow_employee.errors }}</div>
+    </td>
+  </tr>
+  <tr>
+    <th>{{ form.manager_approval.label_tag }} <img id='id_manager_approval'
+        class='help-tooltip' src='/images/question_mark.gif'/></th>
+    <td>{{ form.manager_approval }}  {{ form.manager_approval.errors }}
+  </tr>
+  <tr>
+    <th>{{ form.public_activity_creation.label_tag }}
+        <img id='id_public_activity_creation'
+         class='help-tooltip' src='/images/question_mark.gif'/></th>
+    <td>{{ form.public_activity_creation }}  {{ form.public_activity_creation.errors }}
+  </tr>
+  <tr>
+    <th>{{ form.visible.label_tag }}
+        <img id='id_visible'
+         class='help-tooltip' src='/images/question_mark.gif'/></th>
+    <td>{{ form.visible }}  {{ form.visible.errors }}
+  </tr>
+  <tr>
+    <th>{{ form.facilitator.label_tag }} <img id='id_question_facilitator'
+        class='help-tooltip' src='/images/question_mark.gif'/></th>
+    <td>{{ form.facilitator }} {{ form.facilitator.errors }}
+     <div class="hint">Comma separated list of emails</div></td>
+  </tr>
+  <tr>
+    <th>{{ form.contact_person.label_tag }} <img id='id_question_contact'
+        class='help-tooltip' src='/images/question_mark.gif'/></th>
+    <td>{{ form.contact_person }} {{ form.contact_person.errors }}
+    <div class="hint">Enter an email or mailing list address</div></td>
+  </tr>
+  <tr>
+    <th>{{ form.department.label_tag }}</th>
+    <td>{{ form.department }}  {{ form.department.errors }}
+  </tr>
+  <!-- TODO(user): Commented out for alpha. Need for beta.
+  <tr>
+    <th>Labels</th>
+    <td>
+      <span class="instructions">
+        Add labels to your activity so Googlers can easily browse and find it.
+        Select from existing labels or add your own labels.
+      </span>
+      <table id="label-actions">
+        <tr>
+          <td id="label-generator-action"><input type="button" value="Select labels" /><span class="hint">(Recommended)</span></td>
+          <td id="label-user-input-action"><input type="text" size="15" /> <input type="button" value="Add label" />
+        </tr>
+      </table>
+      Current labels:
+      <div id="label-output">
+      </div>
+    </td>
+  </tr>
+  -->
+  <tr>
+    <th>
+    </th>
+    <td class='padding-top'>
+      <input id='id_submit' type="submit" class='button-bold' value="{% if is_update %}Save{% else %}Create{% endif %}" />
+      <input type="button" value="Cancel" onClick="window.location='{{ request.GET.oncancel }}'">
+    </td>
+  </tr>
+</table>
+</form>
+<script type="text/javascript">
+  // django standard is to use id_<field name> for field IDs
+  // per http://docs.djangoproject.com/en/dev/topics/forms/
+  editor.createTooltip('id_question_restricted', 'Restricts activity enrollment by employee type.');
+  editor.createTooltip('id_question_contact', 'This email address will be listed as the point of contact for the activity. All gLearn-automated emails about this activity will appear to be from this address.');
+  editor.createTooltip('id_question_facilitator', 'Owners usually coordinate the activity. They will be able to modify the activity as needed.');
+  editor.createTooltip('id_manager_approval', 'Requires manager approval before users can enroll.');
+  editor.createTooltip('id_public_activity_creation', 'Any user within your domain can schedule new sessions under this activity');
+  editor.createTooltip('id_visible', 'Uncheck this if the activity and the associated sessions should be invisible for search/browsing.');
+
+  new editor.Editor('description_edit','description_toolbar','id_description', 'id_submit');
+</script>
+{% endblock %}
+<!--
+Copyright 2010 Google Inc. All Rights Reserved.
+
+Use of this source code is governed by an Apache 2.0 License.
+See the COPYING file for details.
+-->
