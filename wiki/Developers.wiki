@@ -27,4 +27,5 @@ Basically the application entry points are split in 3 categories:
  * `core/views.py` handles every other http request
 
 All the html templates are located under `core/templates`
+
 All static resources (scripts, styles, images) are located under `core/static`
