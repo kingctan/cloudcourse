@@ -25,3 +25,6 @@ Basically the application entry points are split in 3 categories:
  * `core/tasks.py` contains entry points for everything related to tasks/cron jobs
  * `core/ajax.py` contains every function which is called in an ajax fashion from the client
  * `core/views.py` handles every other http request
+
+All the html templates are located under `core/templates`
+All static resources (scripts, styles, images) are located under `core/static`
