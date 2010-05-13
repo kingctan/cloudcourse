@@ -24,4 +24,4 @@ Look at the `core/urlsauto.py` module to see all the entry points in the applica
 Basically the application entry points are split in 3 categories:
  * `core/tasks.py` contains entry points for everything related to tasks/cron jobs
  * `core/ajax.py` contains every function which is called in an ajax fashion from the client
- * `core/views.py` contains everything else.
+ * `core/views.py` handles every other http request
