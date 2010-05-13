@@ -40,3 +40,7 @@ There is a helper script `make.sh` which does the job. The output js and css fil
 When developing on your local server, the js/css files are served directly from the original source files. When running on App Engine servers, the js/css are served from the compiled bundles.
 
 You can change this behavior by changing the debug mode in `core/context_processors.py`
+
+= Contributions =
+
+We love contributions. New features, bug fixes, crazy ideas... you name it! If you want write access to svn, contact us.
