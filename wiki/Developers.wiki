@@ -15,4 +15,4 @@ If you build CloudCourse yourself, you will need to download them manually. The 
 
 = Getting the code =
 
-Check out the code from subversion.
+[http://code.google.com/p/cloudcourse/source/checkout Check out the code] from subversion.
