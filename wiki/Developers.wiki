@@ -18,6 +18,7 @@ If you build `CloudCourse` yourself, you will need to download them manually. Th
 
 = Start development =
 
+== Code structure ==
 The bulk of the code is located under the 'core' directory.
 Look at the `core/urlsauto.py` module to see all the entry points in the application.
 
@@ -26,6 +27,16 @@ Basically the application entry points are split in 3 categories:
  * `core/ajax.py` contains every function which is called in an ajax fashion from the client
  * `core/views.py` handles every other http request
 
-All the html templates are located under `core/templates`
+We are using the django templating system to render responses. All templates are located under `core/templates`
+
+== Static resources ==
 
 All static resources (scripts, styles, images) are located under `core/static`
+
+Before deploying the application in production, javascript files need to be compiled using the closure compiler and the css files need to be concatenated in one bundle.
+
+There is a helper script `make.sh` which does the job. The output js and css files are tagged with the version number of the application (from `app.yaml`).
+
+When developing on your local server, the js/css files are served directly from the original source files. When running on App Engine servers, the js/css are served from the compiled bundles.
+
+You can change this behavior by changing the debug mode in `core/context_processors.py`
