@@ -1,8 +1,8 @@
-This page shows how to get started with CloudCourse development.
+This page shows how to get started with `CloudCourse` development.
 
 = Introduction =
 
-CloudCourse is built with Python and App Engine.
+`CloudCourse` is built with Python and App Engine.
 It uses some third party dependencies:
   * GData
   * Closure
