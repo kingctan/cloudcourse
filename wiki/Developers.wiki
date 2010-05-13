@@ -8,7 +8,6 @@ It uses some third party dependencies:
   * [http://code.google.com/closure/library/docs/gettingstarted.html Closure library] and the [http://code.google.com/closure/compiler/ Closure compiler]
   * [http://code.google.com/p/app-engine-patch/downloads/list App Engine patch]
   * [http://code.google.com/p/gae-pytz/ pytz]
-  * atom
 
 The [http://code.google.com/p/cloudcourse/downloads/list binaries] include all necessary dependencies.
 If you build CloudCourse yourself, you will need to download them manually. The easiest way to set up the dependencies is to look at a CloudCourse binary and replicate the same folder structure for dependencies.
