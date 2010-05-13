@@ -59,4 +59,4 @@
 
 
 *I don't see the room I want to schedule listed as an option, what do I do?*
-  The room information collected from the room info service. The service should be updated to provide the most update to date information on rooms. The service can be called using a cron job periodically (not configured by default). Or site administrators can click on Admin interface > Access Points > Reload Rooms to load the rooms again through rooms info service.
+  The room information is collected from the room info service. The service should be updated to provide the most up to date information on rooms. The service can be called using a cron job periodically (not configured by default). Or site administrators can click on Admin interface > Access Points > Reload Rooms to load the rooms again through rooms info service.
