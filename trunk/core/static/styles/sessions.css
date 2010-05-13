@@ -1,0 +1,101 @@
+/*
+ * Copyright 2009 Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an Apache 2.0 License.
+ * See the COPYING file for details.
+ */
+
+/**
+ * All Rights Reserved.
+ *
+ * Session styles.
+ *
+ */
+
+.timezone-indicator {
+  background-color: #ECF7FF;
+  font: normal 12px Verdana, Arial, sans-serif;
+  color: #0080FF;
+}
+.ac-renderer {
+  background-color: #fff;
+  border: 1px solid #999;
+  position: absolute;
+  width: 300px;
+}
+.ac-row {
+  background-color: #eee;
+  cursor: pointer;
+  font: normal 12px Verdana, Arial, sans-serif;
+  margin: 3px;
+  padding: 1px 4px;
+  position: relative;
+}
+.ac-highlighted {
+  color: #005;
+}
+.ac-active {
+  background-color: #999;
+  color: #000;
+}
+a.remove-location {
+  text-decoration: none;
+  position: absolute;
+  top: 6px;
+  right: 3px;
+  background: url('/images/x_blue.gif') no-repeat 0 0;
+  height: 12px;
+  width: 12px;
+}
+.timeslot th {
+  text-align: left;
+  width: 130px;
+  padding: 3px 0;
+  padding-right: 5px;
+}
+.timeslot td {
+  padding: 3px 0;
+  text-align: left;
+  vertical-align: top;
+  width: 570px;
+}
+td.room-list {
+  width: 100%;
+}
+td.room-list table{
+  margin: 3px;
+}
+.delete-timeslot {
+  margin-left: 7px;
+}
+
+#timeslots .list-add {
+  width: 100%;
+  margin-left: 5px;
+}
+
+#timeslots .list-add  ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+#timeslots .list-add ul li{
+  padding: 1px 0;
+  position: relative;
+}
+#timeslots .odd div{
+  background: #eaeaea;
+}
+#timeslots .list-add div {
+  padding: 2px;
+  -moz-border-radius: 4px;
+  border: 1px solid #eaeaea;
+}
+#timeslots h3 {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 3px;
+  font-size: 120%;
+}
+#timeslots .help-tooltip {
+  vertical-align: middle;
+}

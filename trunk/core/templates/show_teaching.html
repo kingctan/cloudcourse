@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load format %}
+{% block extra-head %}
+<style type="text/css">
+/* parent container in which this page fits */
+table.container td.info {
+  padding: 0;
+  height: 200px;
+}
+</style>
+{% endblock %}
+
+{% block nav-title %}
+Activities I teach
+{% endblock %}
+
+{% block nav-teaching-class %}
+selected
+{% endblock %}
+
+{% block content %}
+
+<table class="session-list">
+  <tr>
+    <th>Activity</th>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Location</th>
+
+  </tr>
+  {% for activity in activity_list %}
+    <tr>
+      <td>
+         <a href={% url ShowActivity activity_key=activity.key %}>{{ activity.program_name }}</a><br />
+      </td>
+      <td>{% for schedule in activity.sorted_schedules %}
+          {{ schedule.start_time_local|weekday }} {{ schedule.start_time_local|format_date }}<br />
+        {% endfor %}
+      </td>
+      <td>
+          {% for schedule in activity.sorted_schedules %}
+            {{ schedule.start_time_local|format_time }} - {{ schedule.end_time_local|format_time }} {{ schedule.start_time_local|timezone }}
+            {% if schedule.notes %}
+              <img src="/images/notes.gif" title="{{ schedule.notes }}" alt="notes" />
+            {% endif %}
+            <br />
+          {% endfor %}
+      </td>
+      <td>
+              {% for location in activity.locations %}
+                {{ location }}{% if not forloop.last %},{% endif %}
+              {% endfor %}
+              {% if activity.locations_secondary %}
+              <br/>
+              <a title='Show secondary locations' id="less_locations_{{forloop.parentloop.counter}}_{{forloop.counter}}" onClick="javascript:dialog.displayRooms('{{forloop.parentloop.counter}}_{{forloop.counter}}', true);" href='#'>
+              <span class="bold">{{ activity.locations_secondary|length }}</span> more &raquo;</a>
+              <div id='more_locations_{{forloop.parentloop.counter}}_{{forloop.counter}}' class='hidden'>
+              {% for location in activity.locations_secondary %}
+                {{ location }}{% if not forloop.last %},{% endif %}
+              {% endfor %}
+              <br/>
+              <a href="#" onClick="javascript:dialog.displayRooms('{{forloop.parentloop.counter}}_{{forloop.counter}}', false);">
+              &laquo; show less</a>
+              </div>
+              {% endif %}
+    </tr>
+  {% endfor %}
+</table>
+{% endblock %}
+
+<!--
+Copyright 2010 Google Inc. All Rights Reserved.
+
+Use of this source code is governed by an Apache 2.0 License.
+See the COPYING file for details.
+-->

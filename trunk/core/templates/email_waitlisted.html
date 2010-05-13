@@ -1,0 +1,26 @@
+{% extends 'base_email.html' %}
+
+
+{% block content %}
+<p>
+  You are {{ rank }} on the general waitlist for <a href='https://{{ hostname }}{% url ShowActivity activity_key=register.activity.key %}'>{{ register.program.name }}</a> with the following time slots:
+</p>
+{% endblock %}
+
+{% block footer %}
+<p>
+Currently, the class can only accept {{ capacity }} Googlers.
+Should there be a vacated spot in the class, you will be automatically enrolled from the
+waitlist and receive an email confirmation.
+</p>
+
+<p>
+If you no longer want to be enrolled, go to the <a href='https://{{ hostname }}{% url ShowActivity activity_key=register.activity.key %}'>Activity page</a> to cancel your enrollment.
+</p>
+{% endblock %}
+<!--
+Copyright 2010 Google Inc. All Rights Reserved.
+
+Use of this source code is governed by an Apache 2.0 License.
+See the COPYING file for details.
+-->

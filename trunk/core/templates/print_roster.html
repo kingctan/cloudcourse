@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en" dir="ltr" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+{% load format %}
+<title>Roster</title>
+{% if debug %}
+      <link rel="stylesheet" type="text/css" href="/styles/main.css" />
+      <link rel="stylesheet" type="text/css" href="/styles/roster.css" />
+{% else %}
+      <link rel="stylesheet" type="text/css" href="/styles/styles_compiled_{% app_version %}.css" />
+{% endif %}
+{% include "javascript.html" %}
+</head>
+<body>
+<div class="print">
+<div class="wrapper">
+    <table class="session">
+            <tr>
+              <td><div>
+                  <div class='line-height-150'>
+                  <table>
+                  <tr>
+                   <th>Activity:</th>
+                   <td>{{ program.name }}</td>
+                   </tr>
+                  <tr>
+                   <th>Session:</th>
+                   <td>{{ activity.start_time_local|full_datetime }} to {{ activity.end_time_local|full_datetime }}</td>
+                   </tr>
+                  <tr>
+                    <th>Instructor:</th>
+                    <td>
+                    {% for person in activity.instructor_list %}
+                    {{person.name}}{% if not forloop.last %},{% endif %}
+                    {% endfor %}
+                    </td>
+                  </tr>
+                  <tr>
+                   <th> Primary location:</th>
+                   <td>
+                     {% for access_point in activity.access_points %}
+                      {{access_point}}{% if not forloop.last %},{% endif %}
+                    {% endfor %}
+                    </td>
+                    </tr>
+                    {% if activity.access_points_secondary %}
+                    <tr>
+                      <th> Secondary locations:</th>
+                      <td>
+                      {% for access_point in activity.access_points_secondary %}
+                        {{access_point}}{% if not forloop.last %},{% endif %}
+                      {% endfor %}
+                      </td>
+                    </tr>
+                    {% endif %}
+                  <tr>
+                   <th>Enrolled:</th>
+                   <td>
+                     <span class="bold">{{enrolled_count}}</span> ({{waitlisted_count}} waitlisted)
+                    </td>
+                  </tr>
+                  </table>
+                    </div>
+                  </div>
+            </td>
+            </tr>
+          </table>
+Show:
+<input type="checkbox" id="checkbox-enrolled" checked  href="javascript:void(0)" onClick="javascript:roster.updateRosterDisplay();" /><label for="checkbox-enrolled">Enrolled</label>
+<input type="checkbox" id="checkbox-waitlisted"  href="javascript:void(0)" onClick="javascript:roster.updateRosterDisplay();" /><label for="checkbox-waitlisted">Waitlisted</label>
+<input type="checkbox" id="checkbox-pic" href="javascript:void(0)" onClick="javascript:roster.toggleClass('roster-list', 'profile-pic');" /><label for="pic">Student pictures</label>
+
+<table id="roster-list">
+  <tr>
+     <th  class="profile-pic hidden"></th>
+    <th>
+    <a href='{% url PrintRoster activity_key=activity.key order_by=order_by_user %}'>Name</a>{% ifequal order_by 'user' %}<img src='/images/uparrow.gif'>{% endifequal %}{% ifequal order_by '-user' %}<img src='/images/downarrow.gif'>{% endifequal %}
+    </th>
+    <th>Email</th>
+    <th>Title</th>
+    <th>Location </th>
+    <th>
+    <a href='{% url PrintRoster activity_key=activity.key order_by=order_by_status %}'>Status</a>{% ifequal order_by 'status' %}<img src='/images/uparrow.gif'>{% endifequal %}{% ifequal order_by '-status' %}<img src='/images/downarrow.gif'>{% endifequal %}
+
+    </th>
+    <th>Attendance</th>
+  </tr>
+  {% for user in user_list %}
+  <tr  class="student {% if user.enrolled %}enrolled{% else %}waitlisted hidden {% endif %}">
+    <td class="profile-pic hidden"><img src="{% if user.photo_url %}{{ user.photo_url }}{% else %}/images/person.png{% endif %}"/></td>
+    <td>{{ user.name }}</td>
+    <td>{{ user.email }}</td>
+    <td>{{ user.title }}</td>
+    <td>{{ user.location }}</td>
+    <td>{{ user.register_status }} on {{ user.queue_time_local|full_datetime }}</td>
+    <td>{% if user.attended %} Attended {% endif %}{% if user.no_show %} No show {% endif %}</td>
+  </tr>
+  {% endfor %}
+</table>
+</div>
+</div>
+</body>
+</html>
+<!--
+Copyright 2010 Google Inc. All Rights Reserved.
+
+Use of this source code is governed by an Apache 2.0 License.
+See the COPYING file for details.
+-->

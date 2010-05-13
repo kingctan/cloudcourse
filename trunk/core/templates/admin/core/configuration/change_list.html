@@ -1,0 +1,30 @@
+{% extends "admin/change_list.html" %}
+{% load i18n %}
+    {% block object-tools %}
+      {% if has_add_permission %}
+        <ul class="object-tools">
+          <li>
+            <a href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">
+              {% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}
+            </a>
+          </li>
+          <li>
+            <a href="{% url UpdateCalendarSessionToken %}" class="historylink">
+              {% blocktrans with cl.opts.verbose_name as name %}Get calendar token{% endblocktrans %}
+            </a>
+          </li>
+         <li>
+            <a href="{% url ResetDatastoreSync %}" class="historylink">
+              {% blocktrans with cl.opts.verbose_name as name %}Reset datastore sync{% endblocktrans %}
+            </a>
+          </li>
+        </ul>
+
+      {% endif %}
+    {% endblock %}
+<!--
+Copyright 2010 Google Inc. All Rights Reserved.
+
+Use of this source code is governed by an Apache 2.0 License.
+See the COPYING file for details.
+-->

@@ -1,0 +1,15 @@
+{% extends 'base_email.html' %}
+
+{% block content %}
+<p>
+  Regarding your enrollment in <a href='https://{{ hostname }}{% url ShowActivity activity_key=register.activity.key %}'>{{ register.program.name }}</a>, {% if register.resource_rules_only %}the session was cancelled, so {% endif %} you've been unregistered from the following time slots:
+</p>
+
+{% endblock %}
+
+<!--
+Copyright 2010 Google Inc. All Rights Reserved.
+
+Use of this source code is governed by an Apache 2.0 License.
+See the COPYING file for details.
+-->

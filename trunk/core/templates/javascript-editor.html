@@ -1,0 +1,17 @@
+{% extends 'javascript.html' %}
+
+{% block top_entries %}
+<script type="text/javascript" src="/scripts/editor.js"></script>
+<link href='/closure-library-read-only/closure/goog/css/editortoolbar.css' rel='stylesheet'/>
+<link href='/closure-library-read-only/closure/goog/css/toolbar.css' rel='stylesheet'/>  
+{% endblock %}
+
+{% block goog_require %}
+goog.require('goog.editor.Field');
+goog.require('goog.ui.editor.DefaultToolbar');
+goog.require('goog.ui.editor.ToolbarController');
+goog.require('goog.editor.plugins.BasicTextFormatter');
+goog.require('goog.editor.plugins.LinkDialogPlugin');
+goog.require('goog.editor.plugins.UndoRedo');
+{% endblock %}
+

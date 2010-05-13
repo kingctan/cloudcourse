@@ -1,0 +1,55 @@
+{% load format %}
+<html>
+<!--
+Copyright 2010 Google Inc. All Rights Reserved.
+
+Use of this source code is governed by an Apache 2.0 License.
+See the COPYING file for details.
+-->
+  <head>
+    {% if debug %}     
+      <link rel="stylesheet" type="text/css" href="/styles/main.css" />
+    {% else %}
+      <link rel="stylesheet" type="text/css" href="/styles/styles_compiled_{% app_version %}.css" />
+    {% endif %}
+  </head>
+  <body>
+
+<table class="system-status">
+<tr>
+  <th>Feature</th>
+  <th>Status</th>
+</tr>
+
+<tr>
+  <td>User Service</td>
+  <td><img src="/images/status_{% if user_service %}good{%else%}alert{%endif%}.gif"></td>
+</tr>
+<tr>
+  <td>Datastore</td>
+  <td><img src="/images/status_{% if datastore %}good{%else%}alert{%endif%}.gif"></td>
+</tr>
+
+<tr>
+  <td>Mail</td>
+  <td><img src="/images/status_{% if mail %}good{%else%}alert{%endif%}.gif"></td>
+</tr>
+
+<tr>
+  <td>Urlfetch</td>
+  <td><img src="/images/status_{% if urlfetch %}good{%else%}alert{%endif%}.gif"></td>
+</tr>
+
+<tr>
+  <td>Memcache</td>
+  <td><img src="/images/status_{% if memcache %}good{%else%}alert{%endif%}.gif"></td>
+</tr>
+<tr>
+  <td>Task queues</td>
+  <td><img src="/images/status_{% if taskqueue %}good{%else%}alert{%endif%}.gif"></td>
+</tr>
+
+
+</table> 
+</body>
+</html>

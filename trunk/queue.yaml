@@ -1,0 +1,6 @@
+queue:
+- name: offline
+  rate: 1/s
+  bucket_size: 1
+- name: calendar
+  rate: 1/s

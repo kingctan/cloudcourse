@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block extra-head %}
+<style type="text/css">
+/* parent container in which this page fits */
+table.container td.info {
+  padding: 0;
+  height: 200px;
+}
+</style>
+{% endblock %}
+{% block nav-title %}
+Activities I manage
+{% endblock %}
+
+{% block nav-owned-class %}
+selected
+{% endblock %}
+
+{% block content %}
+
+<table class="session-list">
+  <tr>
+    <th>Activity</th>
+    <th>Type</th>
+    <th>Actions</th>
+  </tr>
+  {% for program in program_list %}
+    <tr>
+      <td>
+        <a href="{% url ShowProgram program_key=program.key %}">{{ program.name }}</a>
+        <br/>{{ program.description|safe|striptags|truncatewords:10 }}
+      </td>
+      <td>{{program.instruction_type}}</td>
+      <td><a href='{% url UpdateProgram program_key=program.key %}?oncancel={{ request.get_full_path }}'>Edit</a></td>
+    </tr>
+  {% endfor %}
+</table>
+{% endblock %}
+<!--
+Copyright 2010 Google Inc. All Rights Reserved.
+
+Use of this source code is governed by an Apache 2.0 License.
+See the COPYING file for details.
+-->

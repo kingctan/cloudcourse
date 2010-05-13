@@ -1,0 +1,107 @@
+{% extends 'show_roster_base.html' %}
+{% load format %}
+{% block nav-title %}
+<a href="{% url ShowProgram program_key=program.key %}">{{ program.name }}</a> > Roster
+{% endblock %}
+
+{% block roster-content %}
+<!-- roster -->
+<table class="roster-actions">
+  <tr>
+    <td>
+     {% if activity_owner %}
+     <div id="markAsMenuButton" class="button">
+        Mark attendance
+        <div id="markAsMenu" class="goog-menu">
+          <div id='menu-attended' onClick="javascript:roster.attendanceMulti('{% url UserAttendance activity_key=activity.key attended='True' %}', true);" class="goog-menuitem">Attended</div>
+          <div id='menu-noshow'  onClick="javascript:roster.attendanceMulti('{% url UserAttendance activity_key=activity.key attended='False' %}', false);" class="goog-menuitem">No show</div>
+        </div>
+     </div>
+     <div id="forceStatusButton" class="button">
+        Force status
+        <div id="forceStatusMenu" class="goog-menu">
+          <div id='menu-force-enroll' onClick="javascript:roster.forceRegisterStatus('{% url ChangeUserStatusToEnrolled activity_key=activity.key users=' ' %}', true);" class="goog-menuitem">Enroll</div>
+          <div id='menu-force-unenroll'  onClick="javascript:roster.forceRegisterStatus('{% url UnregisterUsers activity_key=activity.key users=' ' %}', false);" class="goog-menuitem">Unenroll</div>
+        </div>
+     </div>
+    {% endif %}
+    </td>
+    <td class='text-align-right'>
+      <a href="javascript:roster.emailAll('{{user.email}}', '{{program.name}}');">Send a message</a>
+      {% if activity_owner %}
+      <a href='{% url RosterEnroll activity_key=activity.key %}?referrer={{ request.get_full_path }}' class='margin-left-10'>Enroll students</a>
+      {% endif %}
+      <a href="javascript:void();" onClick="javascript:window.open('{% url PrintRoster activity_key=activity.key order_by='status' %}', '{{activity.key}}');" class='margin-left-10'>Print roster</a>
+     </td>
+  </tr>
+  <tr>
+    <td>
+       Show:
+       <input type="checkbox" id="checkbox-enrolled" checked  href="javascript:void(0)" onClick="javascript:roster.updateRosterDisplay();" /><label for="checkbox-enrolled">Enrolled</label>
+       <input type="checkbox" id="checkbox-waitlisted"  href="javascript:void(0)" onClick="javascript:roster.updateRosterDisplay();" /><label for="checkbox-waitlisted">Waitlisted</label>
+       <input type="checkbox" id="checkbox-attended"  href="javascript:void(0)" onClick="javascript:roster.updateRosterDisplay();" checked /><label for="checkbox-attended">Attended</label>
+       <input type="checkbox" id="checkbox-noshow"  href="javascript:void(0)" onClick="javascript:roster.updateRosterDisplay();" checked /><label for="checkbox-noshow">No show</label>
+       <input type="checkbox" id="checkbox-pic" href="javascript:void(0)" onClick="javascript:roster.toggleClass('roster-list', 'profile-pic');" /><label for="checkbox-pic">Student pictures</label>
+    </td>
+    <td class='text-align-right'>Results: <span id="students-count"></span></td>
+  </tr>
+</table>
+<!-- roster list -->
+<table id="roster-list">
+  <tr>
+    <th><input type="checkbox" id="checkbox-select-all" href="javascript:void(0)" onClick="javascript:roster.toggleSelectAll();" /> </th>
+    <th  class="profile-pic hidden"></th>
+    <th>
+    <a href='{% url ShowRoster activity_key=activity.key order_by=order_by_user %}'>Name</a>{% ifequal order_by 'user' %}<img src='/images/uparrow.gif'>{% endifequal %}{% ifequal order_by '-user' %}<img src='/images/downarrow.gif'>{% endifequal %}
+    </th>
+    <th>Title</th>
+    <th>Location </th>
+    <th>
+    <a href='{% url ShowRoster activity_key=activity.key order_by=order_by_status %}'>Status</a>{% ifequal order_by 'status' %}<img src='/images/uparrow.gif'>{% endifequal %}{% ifequal order_by '-status' %}<img src='/images/downarrow.gif'>{% endifequal %}
+    </th>
+    
+    <th>Attendance</th>
+  
+  </tr>
+  {% for user in user_list %}
+  <tr  class="student {% if user.enrolled %}enrolled{% else %}waitlisted hidden {% endif %}{% if user.attended %} attended {% endif%}{% if user.no_show %} noshow {% endif %}">
+    <td><input type="checkbox" id="{{user.email}}" class="checkbox-select"/></td>
+    <td class="profile-pic hidden"><img src="{% if user.photo_url %}{{ user.photo_url }}{% else %}/images/person.png{% endif %}"/></td>
+    <td> <a target="_blank" href="{{ user.email|email_url }}">{{ user.name }}</a>
+    </td>
+    <td> {{ user.title }}</td>
+    <td> {{ user.location }} </td>
+    <td> {{ user.register_status }} on {{ user.queue_time_local|full_datetime }} </td>
+
+    <td>
+      <span class="attended-choice">
+        <input {% if not mark_attendance_enabled %}disabled{% endif %} onClick="javascript:roster.attendance('{% url UserAttendance activity_key=activity.key attended='True' %}', true, '{{user.email}}');" type="radio" id="attended-{{user.email}}" name="mark-as-{{user.name}}" {% if user.attended %} checked {% endif %}/>
+        <label for="attended-{{user.email}}">Attended</label>
+      </span>
+      <span class="attended-choice">
+        <input  {% if not mark_attendance_enabled %}disabled{% endif %} onClick="javascript:roster.attendance('{% url UserAttendance activity_key=activity.key attended='False' %}', false, '{{user.email}}');" type="radio" id="noshow-{{user.email}}" name="mark-as-{{user.name}}"  {% if user.no_show %} checked {% endif %} />
+        <label for="noshow-{{user.email}}">No show </label>
+      </span>
+    </td>
+  
+  </tr>
+  {% endfor %}
+</table>
+<script type="text/javascript">
+roster.updateRosterDisplay();
+{% if mark_attendance_enabled %}
+roster.initMarkAsButton(true);
+{% else %}
+roster.initMarkAsButton(false);
+{% endif %}
+roster.initForceStatusButton()
+</script>
+<!-- end roster list -->
+
+{% endblock %}
+<!--
+Copyright 2010 Google Inc. All Rights Reserved.
+
+Use of this source code is governed by an Apache 2.0 License.
+See the COPYING file for details.
+-->

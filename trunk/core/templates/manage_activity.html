@@ -1,0 +1,216 @@
+{% extends 'base.html' %}
+
+{% block extra-head %}
+<style type="text/css">
+/* parent container in which this page fits */
+table.container td.info {
+  padding: 1em;
+}
+</style>
+{% endblock %}
+
+{% block nav-title %}
+<a href="{% url ShowProgram program_key=program.key %}">{{ program.name }}</a>
+{% if is_update %}
+> Update session
+{% else %}
+> Schedule a session
+{% endif %}
+
+{%endblock %}
+
+{% block content %}
+
+<div class="errorlist">
+{% if formset.non_form_errors %}
+{{ formset.non_form_errors }}
+{% endif %}
+</div>
+
+<div id='timeslots'>
+<form action="" method="post" enctype="multipart/form-data">
+<h3>General information</h3>
+<table class="forms">
+
+
+{% for form in formset.forms %}
+<!-- We take the max number of people from the first form -->
+{% if forloop.first %}
+  <tbody>
+    <tr></tr>
+    <tr>
+       <th>{{ form.max_people.label_tag }}<div class="optional">optional</div></th>
+       <td>{{ form.max_people }} {{ form.max_people.errors }}</td>
+    </tr>
+    <tr>
+      <th>
+        {{ form.register_end_date.label_tag }}
+        <div class="optional">optional</div>
+      </th>
+      <td>
+       {{ form.register_end_date }} {{ form.register_end_date.errors }}
+       {{ form.register_end_time }} {{ form.register_end_time.errors }}
+      </td>
+    </tr>
+    <tr>
+       <th>
+         {{ form.reserve_rooms.label_tag }}
+         <img id="id-reserve-rooms" src="/images/question_mark.gif" class="help-tooltip" />
+       </th>
+       <td>{{ form.reserve_rooms }} {{ form.reserve_rooms.errors }}</td>
+    </tr>
+    <tr>
+       <th>
+         {{ form.visible.label_tag }}
+         <img id="id-visible" src="/images/question_mark.gif" class="help-tooltip" />
+       </th>
+       <td>{{ form.visible }} {{ form.visible.errors }}</td>
+    </tr>
+  </tbody>
+{% endif %}
+{% endfor %}
+
+</table>
+
+<h3>Adding timeslots <img id="id-adding-timeslots" src="/images/question_mark.gif" class="help-tooltip"/></h3>
+<br/>
+
+{{ formset.management_form }}
+
+{% for form in formset.forms %}
+
+<div class="timeslot-wrapper active_form" id="id_timeslot_{{ forloop.counter0 }}">
+  <div class="timeslot-actions">
+    <a href="javascript:void(0)" onclick="javascript:sessions.deleteTimeslot(this)">
+      <img src="/images/remove.gif" class="delete-timeslot" alt="delete" title="Delete this timeslot" />
+    </a>
+  </div>
+  <!--  Invisible fields -->
+  {{ form.schedule_key }}
+  {{ form.DELETE }}
+  {{ form.access_points }}
+  {{ form.access_points_secondary }}
+  <!-- End Invisible fields -->
+  <table class="forms timeslot">
+    <tbody>
+    {% if form.global_error %}
+    <tr><td colspan='2'>{{ form.global_error }}</td></tr>
+    {% endif %}
+      <tr>
+        <th>{{ form.start_date.label_tag }}</th>
+        <td>
+           {{ form.start_date }}
+           {{ form.start_time }}
+           {{ form.end_date.label_tag }}
+           {{ form.end_date }}
+           {{ form.end_time }}
+           <span class='timezone-indicator' title='Times are in the timezone of the primary location.' ></span>
+        </td>
+      </tr>
+      <tr>
+        <th></th>
+        <td>
+           {{ form.start_date.errors }}
+           {{ form.start_time.errors }}
+           {{ form.end_date.errors }}
+           {{ form.end_time.errors }}
+        </td>
+      </tr>
+      <tr>
+        <th>
+          {{ form.access_points.label_tag }}
+          <img src="/images/question_mark.gif" class="help-tooltip" id="id_form-{{ forloop.counter0 }}-tt-loc"/>
+        </th>
+        <td><table>
+            <tr>
+              <td><input id="id_form-{{ forloop.counter0 }}-access_points-text" type="text" size="25" autocomplete="off" />{{ form.access_points.errors }}</td>
+              <td class="room-list">
+                <div class="list-add">
+                  <ul id="id_form-{{ forloop.counter0 }}-access_points-list">
+                  </ul>
+                </div>
+              </td>
+            </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <th>
+          {{ form.access_points_secondary.label_tag }}
+          <img src="/images/question_mark.gif" class="help-tooltip" id="id_form-{{ forloop.counter0 }}-tt-loc-secondary"/>
+          <div class="optional">optional</div>
+        </th>
+        <td><table>
+            <tr>
+              <td><input id="id_form-{{ forloop.counter0 }}-access_points_secondary-text" type="text" size="25" autocomplete="off" />{{ form.access_points_secondary.errors }}</td>
+              <td class="room-list">
+                <div class="list-add">
+                  <ul id="id_form-{{ forloop.counter0 }}-access_points_secondary-list">
+                  </ul>
+                </div>
+              </td>
+            </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <th>{{ form.vc_bridge.label_tag }}<div class="optional">optional</div></th>
+        <td>{{ form.vc_bridge }} {{ form.vc_bridge.errors }}</td>
+      </tr>
+
+      <tr>
+        <th>{{ form.instructors.label_tag }}</th>
+        <td>
+          {{ form.instructors }} {{ form.instructors.errors }}
+          <br/><span class="hint">Enter comma separated email addresses</span>
+        </td>
+      </tr>
+
+      <tr>
+        <th>
+          {{ form.notes.label_tag }}
+          <img src="/images/question_mark.gif" class="help-tooltip" id="id_form-{{ forloop.counter0 }}-tt-notes" />
+          <div class="optional">optional</div>
+        </th>
+        <td>{{ form.notes }} {{ form.notes.errors }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <a href="javascript:void(0)" onclick="javascript:sessions.cloneTimeslot(this)">Add timeslot</a>
+</div>
+<br />
+{% endfor %}
+
+<br/>
+
+<table class="forms">
+  <tr>
+    <th></th>
+    <td><input class='button-bold' type="submit" id="id_submit_forms"
+      value="{% if is_update %}Update{% else %}Create{% endif %}" /> <input type="button"
+      value="Cancel" onClick="window.location='{{ request.GET.referrer }}'">
+    </td>
+  </tr>
+</table>
+</form>
+</div>
+<script type="text/javascript">
+
+var accessPointNames = {{ access_point_names|safe|striptags }};
+var accessPointKeys = {{ access_point_keys|safe|striptags}};
+var accessPointTimezones = {{ access_point_tzs|safe|striptags}};
+
+var total = {{ formset.forms|length }};
+
+sessions.initializePage(total, accessPointKeys, accessPointNames,
+    accessPointTimezones);
+
+</script>
+{% endblock %}
+
+
+
+<!--
+Copyright 2010 Google Inc. All Rights Reserved.
+
+Use of this source code is governed by an Apache 2.0 License.
+See the COPYING file for details.
+-->

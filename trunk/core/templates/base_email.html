@@ -1,0 +1,37 @@
+<!--
+Copyright 2010 Google Inc. All Rights Reserved.
+
+Use of this source code is governed by an Apache 2.0 License.
+See the COPYING file for details.
+-->
+{% load format %}
+
+<img src='https://{{ hostname }}{% app_logo %}'>
+
+<div>
+{% block content %}
+{% endblock %}
+</div>
+
+{% block location %}
+<ol>
+  {% for location_time in locations_and_times %}
+    <li> {{ location_time.start_time_local|full_datetime }} in {{ location_time.location }} </li>
+  {% endfor %}
+</ol>
+{% endblock %}
+
+<div>
+{% block footer %}
+{% endblock %}
+</div>
+
+{% block contact %}
+<p>
+  Please contact
+  {% for person in contact_list %}
+    {{ person.email }}{% if not forloop.last %},{% endif %}
+  {% endfor %}
+  with any questions.
+</p>
+{% endblock %}

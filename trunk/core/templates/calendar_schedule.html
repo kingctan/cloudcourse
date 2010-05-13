@@ -1,0 +1,13 @@
+<h3><a href='https://{{ hostname }}{% url ShowProgram program_key=program.key %}'>{{ program.name }}</a></h3>
+<p>{{ program.description|safe|striptags }}</p>
+{% if schedule.notes %}
+  <h3>Notes:</h3>
+  <p>{{ schedule.notes }}
+{% endif %}
+<p>If you would like to unregister please visit <a href='https://{{ hostname }}{% url ShowProgram program_key=program.key %}'>{{ program.name }}</a>.</p>
+<!--
+Copyright 2010 Google Inc. All Rights Reserved.
+
+Use of this source code is governed by an Apache 2.0 License.
+See the COPYING file for details.
+-->

@@ -1,0 +1,30 @@
+{% extends 'base_email.html' %}
+
+
+{% block content %}
+<p>
+  Your request for enrollment in <a href='https://{{ hostname }}{% url ShowActivity activity_key=register.activity.key %}'>{{ register.program.name }}</a> to the following time slots is pending:
+</p>
+{% endblock %}
+
+{% block footer %}
+<p>
+Your request is pending/waiting for the following reasons:
+</p>
+
+<ul>
+  {% for reason in status_reasons %}
+    <li> {{ reason }} </li>
+  {% endfor %}
+</ul>
+
+<p>
+If you no longer want to be enrolled, go to the <a href='https://{{ hostname }}{% url ShowActivity activity_key=register.activity.key %}'>Activity page</a> to cancel your enrollment.
+</p>
+{% endblock %}
+<!--
+Copyright 2010 Google Inc. All Rights Reserved.
+
+Use of this source code is governed by an Apache 2.0 License.
+See the COPYING file for details.
+-->

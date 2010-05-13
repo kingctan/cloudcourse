@@ -1,0 +1,208 @@
+{% load format %}
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"
+    xml:lang="{% firstof LANGUAGE_CODE 'en' %}"
+    lang="{% firstof LANGUAGE_CODE 'en' %}">
+  <head>
+    <title>{% block title %}{% endblock %} Home</title>
+    {% block css %}
+    {% if debug %}
+      <link rel="stylesheet" type="text/css" href="/styles/datepicker.css" />
+      <link rel="stylesheet" type="text/css" href="/styles/main.css" />
+      <link rel="stylesheet" type="text/css" href="/styles/dialog.css" />
+      <link rel="stylesheet" type="text/css" href="/styles/roster.css" />
+      <link rel="stylesheet" type="text/css" href="/styles/sessions.css" />
+    {% else %}
+      <link rel="stylesheet" type="text/css" href="/styles/styles_compiled_{% app_version %}.css" />
+    {% endif %}
+    {% endblock %}
+    {% block extra-head %}{% endblock %}
+    {% block js %}
+      {% include "javascript.html" %}
+    {% endblock %}
+  </head>
+  <body>
+<div class="header">
+  <div class="headerLinks">
+    <div class="access">
+    <!-- login and admin interface -->
+      <div id="gbar">
+        <div id="guser">
+            {% if user.is_staff %}
+              <a href="/admin/">Admin interface</a> |
+            {% endif %}
+            <span id="login">{{ user.username }}</span> |
+            <a href="{% url Settings %}?referrer={{ request.get_full_path }}">Settings</a> |
+            <a href="{% url django.contrib.auth.views.logout %}">Sign out</a> | <a target="blank" href="{% help_url %}">Help</a> |
+            <a href="{% url SystemStatus %}">Status</a>
+        </div>
+      </div>
+    </div>
+    <!-- logo-->
+    <div class="logo">
+      <a href="/" id="logo"><img src="{% app_logo %}" /></a>
+    </div>
+    <div id="confirm-msg" class="confirm-msg{% if not confirm_msg %} hidden{% endif %}">
+      {{ confirm_msg }}
+      {% if explain_confirm_msg %}
+        <img class="note" src="/images/question_mark.gif"
+         title="{{ explain_confirm_msg }}" alt="explanation"/>
+      {% endif %}
+    </div>
+    <div id="error-msg" style="{% app_errors_display %}" class="confirm-msg">
+      {% app_errors %}
+    </div>
+  </div>
+  <!-- search -->
+  {% block search %}
+  <div class="search">
+    <form action="{% url Search %}" id="id-search-form" method="post" enctype="multipart/form-data">
+      <table>
+        <tr><td>
+          <div class="search-box">
+              <input type="text" size="35" name="search_text" value="{{ search_text }}" />
+              <input name="searchButton" value="Search" type="submit" />
+              <input type="button" value="Next month in {{ request.user.GetCityCode|upper}}" onClick="javascript:search.submitSearch('{{ request.user.location|upper }}', true);"/>
+          </div>
+          <div class="search-links">
+            <div id="show-advanced-search" {% if search_show_advanced %}class="hidden"{% endif %}>
+              <a onClick="javascript:search.showAdvancedSearch(true);">Add Filters</a>
+            </div>
+            <div id="hide-advanced-search" {% if not search_show_advanced %}class="hidden"{% endif %}>
+              <a onClick="javascript:search.showAdvancedSearch(false);">Clear Filters</a>
+            </div>
+          </div>
+        </td></tr>
+        <tr>
+          <td>
+            <div class="search-options {% if not search_show_advanced %}hidden{% endif %}" id="advanced-search-div">
+              <select id="id-search-locations" name="search_location">
+              </select>
+              <label for="id-search-start-date">Start Date</label>
+              <input id="id-search-start-date" type="text" size="10" value="{{search_start_date}}" name="search_start_date"/>
+              <label for="id-search-end-date">End Date</label>
+              <input id="id-search-end-date" type="text" size="10" value="{{search_end_date}}" name="search_end_date"/>
+            </div>
+          </td>
+        </tr>
+        {% if search_error_list %}
+        </tr><td>
+          <ul class="errorlist">
+            {% for error in search_error_list %}
+              <li>{{error}}</li>
+            {% endfor %}
+          </ul>
+        </td></tr>
+        {% endif %}
+      </table>
+    </form>
+  </div>
+  {% endblock %}
+</div>
+
+<div class="clear"></div>
+
+<div class="main">
+  <table class="main">
+    <tbody>
+      <tr>
+        <td id="menuTd" class="menuShown"><div id="menuDisplay" class="menuShown">
+          {% block nav %}
+          <div id="menu" class="menu"> <br />
+            {% if user.CanCreateProgram %}
+              <input type="button"
+                  onClick="window.location='{% url CreateProgram %}?oncancel={{ request.get_full_path }}'" value="Create new activity" />
+            {% endif %}
+            <br />
+            <br />
+            <div class="optionsStatic">
+              <div class="{% block nav-home-class %}{% endblock %}">
+                <a href="{% url Home %}">My Activities</a>
+              </div>
+                <div class="tabbed-left-nav {% block nav-learning-class %}{% endblock %}">
+                  <a href="{% url ShowLearning %}">Enrolled</a>
+                </div>
+                <div class="tabbed-left-nav {% block nav-teaching-class %}{% endblock %}">
+                  <a href="{% url ShowTeaching %}">Teaching</a>
+                </div>
+                <div class="tabbed-left-nav {% block nav-owned-class %}{% endblock %}">
+                  <a href="{% url ShowOwned %}">Managing</a>
+                </div>
+                <div class="{% block nav-all-activities-class %}{% endblock %}">
+                  <a href="{% url ShowPrograms %}">All Activities</a>
+                </div>
+                <div class="{% block nav-approvals-class%}{% endblock %}">
+                  <a href="{% url ShowManagerApprovals %}">Approvals</a>
+                </div>
+            </div>
+          </div>
+          {% endblock %}
+        </td>
+        <td class="content">
+          <div class="border">
+            <!-- content container -->
+            <div class="contentHeader">
+              <div class="title">
+                {%block nav-title %}Home{%endblock%}
+              </div>
+
+              <!-- start of content-->
+              <div class="clear"></div>
+              <table class="container">
+                <tbody>
+                  <tr>
+                    <td class="info">
+                      {% block content %}
+                      {% endblock %}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- end of content -->
+            </div>
+            <!-- blue footer -->
+            <div class="contentFooter">
+              {% block content-footer %}
+              <div class="empty"> &nbsp; </div>
+              {% endblock %}
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- footer -->
+  <div class="footer">
+    &copy;2009 Google
+  </div>
+</div>
+  <script type="text/javascript">
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+  try {
+  var pageTracker = _gat._getTracker("UA-12241036-1");
+  pageTracker._trackPageview();
+  } catch(err) {}
+  </script>
+{% block search-js %}
+  <script type="text/javascript">
+    search.initializeLocations({% search_locations %}, "{{search_location}}");
+    search.clearAdvancedOptions(false);
+    sessions.addDatePicker("id-search-start-date");
+    sessions.addDatePicker("id-search-end-date");
+  </script>
+{% endblock %}
+</body>
+</html>
+<!--
+Copyright 2010 Google Inc. All Rights Reserved.
+
+Use of this source code is governed by an Apache 2.0 License.
+See the COPYING file for details.
+-->

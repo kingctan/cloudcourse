@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load format %}
+{% block extra-head %}
+<style type="text/css">
+/* parent container in which this page fits */
+table.container td.info {
+  padding: 0;
+  height: 200px;
+}
+</style>
+{% endblock %}
+
+{% block nav-title %}
+Activities I'm enrolled in
+{% endblock %}
+
+{% block nav-learning-class %}
+selected
+{% endblock %}
+
+{% block content %}
+
+<table class="session-list">
+  <tr>
+    <th>Activity</th>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Location</th>
+    <th>Status</th>
+  </tr>
+  {% for activity in activity_list %}
+    <tr>
+      <td>
+         <a href={% url ShowActivity activity_key=activity.key %}>{{ activity.program_name }}</a><br />
+      </td>
+      <td>{% for schedule in activity.sorted_schedules %}
+          {{ schedule.start_time_local|weekday }} {{ schedule.start_time_local|format_date }}<br />
+        {% endfor %}
+      </td>
+      <td>
+          {% for schedule in activity.sorted_schedules %}
+            {{ schedule.start_time_local|format_time }} - {{ schedule.end_time_local|format_time }} {{ schedule.start_time_local|timezone }}
+            {% if schedule.notes %}
+              <img src="/images/notes.gif" title="{{ schedule.notes }}" alt="notes" />
+            {% endif %}
+            <br />
+          {% endfor %}
+      </td>
+      <td>
+      {% for schedule in activity.sorted_schedules %}
+            {% if schedule.access_points or schedule.access_points_secondary %}
+              {{ schedule.selected_location }}
+            {% else %}
+              N/A
+            {% endif %}
+            <br />
+      {% endfor %}
+      </td>
+      <td>
+          {% if activity.user_register_status %}
+            <span class="status">{{ activity.user_register_status }}</span>
+          {% endif %}
+          {% if activity.register_status_reason %}
+            <img id="id_status_reason" class="note" src="/images/question_mark.gif"
+             title="{{ activity.register_status_reason }}" alt="reasons"/>
+          {% endif %}
+          {% if activity.waitlist_rank_info %}
+            <br/><div class="roster_number_info">({{ activity.waitlist_rank_info }})</div>
+          {% endif %}
+      </td>
+    </tr>
+  {% endfor %}
+</table>
+{% endblock %}
+<!--
+Copyright 2010 Google Inc. All Rights Reserved.
+
+Use of this source code is governed by an Apache 2.0 License.
+See the COPYING file for details.
+-->

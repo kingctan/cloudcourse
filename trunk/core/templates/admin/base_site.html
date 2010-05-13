@@ -1,0 +1,22 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} | {% trans 'gLearn Site Administration' %}{% endblock %}
+
+{% block userlinks %}
+<a href="{% url Home %}">gLearn Home</a> /
+{% url django-admindocs-docroot as docsroot %}{% if docsroot %}<a href="{{ docsroot }}">{% trans 'Documentation' %}</a> / {% endif %}
+<a href="{% url django.contrib.auth.views.logout %}">{% trans 'Sign out' %}</a>
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans 'gLearn administration' %}</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+<!--
+Copyright 2010 Google Inc. All Rights Reserved.
+
+Use of this source code is governed by an Apache 2.0 License.
+See the COPYING file for details.
+-->

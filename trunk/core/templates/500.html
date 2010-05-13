@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Server error{% endblock %}
+
+{% block content %}
+There was an error while handling your request.
+<br>Most likely, this is an intermittent issue with AppEngine. Please try again.
+<div>
+<br>
+Appengine status:
+<br><br>
+<iframe src="{% url SystemStatus %}" height='400px' width='300px'></iframe>
+</div>
+<br>If the problem persists, <a href='http://code.google.com/p/cloudcourse/issues/entry'>report</a> the issue.
+
+{% endblock %}
+
+{% block js %}
+{% endblock %}
+
+{% block search %}
+{% endblock %}
+
+{% block search-js %}
+{% endblock %}

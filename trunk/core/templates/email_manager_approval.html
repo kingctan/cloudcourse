@@ -1,0 +1,19 @@
+{% extends 'base_email.html' %}
+
+{% block content %}
+<p>
+  {{ register.user.nickname }} would like to register for the course <a href='https://{{ hostname }}{% url ShowActivity activity_key=register.activity.key %}'>{{ register.program.name }}</a> which requires your approval.  This course is being held at the following times:
+</p>
+{% endblock %}
+
+{% block footer %}
+<p>
+  Request was initiated by {{ register.creator.nickname }}. To approve this request, please visit <a href='https://{{ hostname }}{% url ShowManagerApprovals %}'>Pending Approvals</a> page.
+</p>
+{% endblock %}
+<!--
+Copyright 2010 Google Inc. All Rights Reserved.
+
+Use of this source code is governed by an Apache 2.0 License.
+See the COPYING file for details.
+-->

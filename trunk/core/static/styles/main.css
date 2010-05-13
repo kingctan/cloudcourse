@@ -1,0 +1,747 @@
+/*
+ * Copyright 2009 Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an Apache 2.0 License.
+ * See the COPYING file for details.
+ */
+
+/**
+ * All Rights Reserved.
+ *
+ * Main styles.
+ *
+ */
+body {
+  background: #fff;
+  border-width: 0px;
+  font-family: arial, sans-serif;
+  font-size: 80%;
+  margin: 0;
+}
+html {
+  border-width: 0px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+img {
+  border-width: 0;
+}
+.bold {
+  font-weight: bold;
+}
+table, th, tr, td {
+  border-collapse: collapse;
+  border-width: 0;
+  text-align: left;
+  vertical-align: top;
+  margin: 0px;
+  padding: 0px;
+}
+input, select, textarea {
+  font-family: arial, sans-serif;
+  font-size: 100%;
+}
+a, a:visited, div.link, span.link {
+  color: #06c;
+  text-decoration:underline;
+  cursor: pointer;
+}
+.button, input[type="submit"], input[type="button"], .submit-row input {
+  background: white url('/images/nav-bg.gif') repeat-x scroll center bottom;
+  padding: 3px;
+  color: #000;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #ddd #aaa #aaa #ddd;
+}
+.button:active, input[type="submit"]:active, input[type="button"]:active {
+  background-image:  url('/images/nav-bg-reverse.gif');
+  background-position: center top;
+}
+.button-bold {
+  margin-right: 1em;
+  font-weight: bold;
+}
+input[type="submit"]:hover, input[type="button"]:hover {
+  cursor: pointer;
+}
+input[type="button"][disabled]:active,
+input[type="button"][disabled],
+input[type="submit"][disabled]:active,
+input[type="submit"][disabled] {
+  background: none;
+  background-color: #f5f4ea;
+  cursor: inherit;
+  color: #c9c7ba;
+  border: 1px solid #c9c7ba;
+}
+
+/* header */
+div.header div.headerLinks {
+  text-align: right;
+}
+div.header div.search-box {
+  float: left;
+  margin-left: 20px;
+  margin-top: 20px;
+  color: #7f7f7f;
+}
+div.header div.search-links {
+  float: left;
+  margin-top: 25px;
+  margin-left: 0.5em;
+  white-space: nowrap;
+}
+
+.search-options {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.confirm-msg{
+  position: relative;
+  margin-left: 30%;
+  margin-top: 1px;
+  text-align: center;
+  background: #fad163;
+  padding: 3px; width: 40%;
+  -moz-border-radius: 5px;
+  font-weight: bold;
+}
+
+/* login bar */
+#gbar {
+  border-bottom: 1px solid #C9D7F1;
+  height: 26px;
+}
+#guser {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  margin: 5px 10px 0 0;
+}
+#login {
+  font-weight: bold;
+}
+
+/* logo */
+.logo img {
+  text-decoration: none;
+  border: 0;
+}
+.logo {
+  border: 0;
+  text-decoration: none;
+  float: left;
+  margin-top: 10px;
+  margin-left: 19px;
+}
+
+/* main */
+div.main {
+  margin-top: 0.5em;      /* Margin properties don't work correctly on tables */
+  margin-right: 0.5em;
+  margin-left: 1em;
+}
+body.embed div.main {
+  margin-top: 0;
+}
+table.main {
+  width: 98%;
+  border-collapse: collapse;
+}
+/* nav */
+td.menuShown {
+  width: 12em;   /* Line up with div.content */
+  background: #ecf7ff;
+  padding-left: 10px;
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+body.embed td.menuShown {
+  display: none;
+}
+
+/* Just wide enough to display the arrow to show the menu */
+div.menu div.head {
+  white-space: nowrap;
+  font-weight: bold;
+  margin-top: 1.0em;
+  padding: 0.2em;
+  padding-right: 0.5em;
+}
+div.menu div.optionsNew div,
+div.menu div.optionsStatic div {
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  padding-left: 1.2em;
+  padding-right: 0.5em;
+}
+div.menu div.optionsNew div {
+  padding-left: 0.2em;
+  font-weight: bold;
+}
+div.menu div.optionsStatic div {
+  white-space: nowrap;
+}
+.menu a {
+  text-decoration: none;
+}
+.selected {
+  font-weight: bold;
+  /* this avoids text wrapping when highlighted */
+  letter-spacing: -0.05em;
+}
+.selected {
+  background: #c3d9ff;
+  background: #5a9ee7;
+  -moz-border-radius: 0.4em 0.0em 0.0em 0.4em;
+}
+.selected a {
+  color: #fff;
+}
+div.star {
+  cursor: pointer;
+}
+div.border {
+  background: #5a9ee7;
+  margin: -1px 0;
+  -moz-border-radius: 0em 0.4em 0.4em 0em;
+  padding-left: 0.5em;
+}
+div.contentHeader, div.contentFooter {
+  text-align: left;
+  padding: 0.5em;
+  padding-left: 0;
+}
+.title {
+  float: left;
+}
+table.container {
+  width: 100%;           /* Workaround for bad IE width calculation */
+}
+table.container td.info {
+  background: #fff;
+  padding: 1.5em;
+}
+div.footer {
+  clear: both;
+  color: #7f7f7f;
+  text-align: center;
+  margin-top: 1.0em;
+  font-size: 0.9em;
+}
+body.embed div.footer {
+  display: none;
+}
+div.footer a {
+  color: #4f4f4f;
+}
+.title, .subtitle {
+  font-size: 1.4em;
+  color: #fff;
+  margin-bottom: 5px;
+}
+.title a, .title a:visited {
+  color: #fff;
+}
+h1, h2, h3, h4, h5, h6 {
+  /* Make the hN tags display as "normal" text, not as bold headers. */
+  font-size: 1em;
+}
+.clear {
+  clear: both;
+}
+
+/* forms */
+.optional {
+  color: #999;
+  font-size: 90%;
+}
+.errorlist {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  color: #c00;
+  margin-top: 3px;
+}
+/* System status */
+.system-status {
+  border: 1px solid #ccc;
+  width: 100%;
+}
+.system-status th {
+  text-align: left;
+  color: #3f3f3f;
+  border: 1px solid #ccc;
+  padding: 6px 7px;
+  background: #f4f4f4;
+}
+.system-status td {
+  border: 1px solid #dedede;
+  padding: 10px 7px;
+}
+
+/* Homepage */
+#home {
+  padding: 1em;
+}
+#home h3 {
+  font-size: 120%;
+  border: none;
+}
+#home table {
+  width: 100%;
+  margin-bottom: 15px;
+}
+#home th {
+  border-bottom: 1px solid #ccc;
+  color: #333;
+}
+#home td, #home th {
+  padding: 5px 15px 5px 0;
+}
+
+/* All Activities, Owned by me */
+.content-listings {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1em;
+}
+.content-listings th {
+  padding: 5px 15px 5px 15px;
+  background: #f4f4f4;
+  border-bottom: 1px solid #ccc;
+}
+.content-listings td{
+  padding: 5px 15px 5px 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Activity form */
+.forms th {
+  vertical-align: top;
+  text-align: right;
+  width: 150px;
+  padding-right: 13px;
+  font-weight: normal;
+}
+.forms td {
+  vertical-align: top;
+  padding-bottom: 15px;
+  width: 600px;
+}
+.forms td label{
+  margin-right: 15px;
+  margin-left: 0px;
+}
+#program-form th {
+  width: 120px;
+}
+#types {
+  margin-left: -4px;
+}
+#restrictions {
+  margin-left: -3px;
+}
+#skills {
+  width: 60%;
+  margin-left: -5px;
+}
+#skills td {
+  padding: 0;
+  margin: 0;
+}
+.instructions {
+  color: #333;
+}
+.hint {
+  color: #808080;
+}
+#label-actions{
+  margin: 10px 0;
+  width: 100%;
+}
+#label-actions td {
+  width: 50%;
+}
+#label-generator-action {
+  border-right: 1px solid #ccc;
+}
+#label-user-input-action {
+  text-align: right;
+}
+#label-output {
+  border: 1px solid #ccc;
+  background: #efefef;
+  padding: 1em;
+  height: 75px;
+}
+.activity-type-item {
+  white-space: nowrap;
+}
+.primary-action {
+  font-weight: bold;
+}
+
+/* Activity view */
+.star {
+  margin-right: 5px;
+}
+#activity-header {
+  vertical-align: top;
+}
+#activity-header h2 {
+  font-size: 150%;
+  margin: 0;
+  padding: 0;
+}
+#ratings-box {
+  padding-left: 10px;
+  vertical-align: middle;
+}
+#activity-container {
+  padding: 1em;
+}
+#activity-container #header #labels {
+  color: #333;
+  margin-top: 3px;
+}
+#activity-container #header #labels a {
+  text-decoration: none;
+  color: #06c;
+}
+#edit-activity {
+  float: right;
+  margin-right: 10px;
+}
+#delete-activity {
+  float: right;
+}
+#cancel-activity {
+  float: right;
+  margin-right: 10px;
+}
+#activity-container h3 {
+  border-bottom: 1px solid #ccc;
+  font-size: 120%;
+  margin-bottom: 0;
+  padding-bottom: 3px;
+  margin-bottom: 8px;
+  margin-top: 20px;
+}
+#activity-container #description {
+  line-height: 16px;
+}
+#activity-container #info-box {
+  border: 1px solid #cbe7ff;
+  background: #ecf9ff;
+  float: right;
+  width: 250px;
+  margin-left: 15px;
+}
+#info-box a {
+  color: #06c;
+  text-decoration: none;
+}
+#info-box ul {
+  list-style-type: none;
+  line-height: 170%;
+  margin: 0;
+  padding: 0;
+  margin: 1em 0 1em 2em;
+}
+#info-box .category {
+  font-weight: bold;
+  color: #333;
+}
+#schedule-session {
+  margin-bottom: 15px;
+}
+#no-sessions-msg {
+  padding: 1em 0;
+}
+.session-list {
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+.session-list th {
+  text-align: left;
+  color: #3f3f3f;
+  border-bottom: 1px solid #ccc;
+  padding: 6px 7px;
+  background: #f4f4f4;
+}
+.session-list td {
+  border-bottom: 1px solid #dedede;
+  padding: 10px 7px;
+}
+.session-list tr.odd td {
+  background: #fcfcfc;
+}
+.session-list tr.odd:hover td {
+  background: #ffc;
+}
+.session-list tr:hover td {
+  background: #ffc;
+}
+.status-wrapper {
+  text-align: center;
+}
+.status {
+  font-weight: bold;
+  font-size: 120%;
+}
+.roster_number_info {
+  font-size: 80%;
+}
+.cancel {
+  font-size: 90%;
+}
+td img.note {
+  vertical-align: middle;
+}
+td img.note:hover {
+  cursor: pointer;
+}
+.admin-actions {
+  border-left: 1px solid #dedede;
+}
+.admin-action {
+  margin-left: 5px;
+}
+#notes-header {
+  text-align: center;
+}
+.register-col {
+  text-align: center;
+}
+.register-col input {
+  font-weight: normal;
+}
+#admin-header {
+  width: 95px;
+}
+.admin-actions {
+  text-align: center;
+}
+.notes-col {
+  text-align: center;
+}
+.margin-bottom {
+  margin-bottom: 5px;
+}
+.padding-top {
+  padding-top: 1em;
+}
+
+/* Session form */
+.timeslot-wrapper {
+  border: 1px solid #ccc;
+  -moz-border-radius: 4px;
+  padding: 5px;
+  max-width: 700px;
+}
+.timeslot-actions {
+  text-align: right;
+  margin-bottom: 10px;
+}
+#add-timeslot {
+  float: right;
+}
+h3#timeslot {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 2px;
+  margin: 0;
+}
+.clone-link {
+  margin-right: 10px;
+}
+.hidden {
+  display: none;
+}
+.help-tooltip {
+  vertical-align: middle;
+}
+.goog-menu {
+background-color:#FFFFFF;
+border-color:#CCCCCC #666666 #666666 #CCCCCC;
+border-style:solid;
+border-width:1px;
+cursor:default;
+margin:0;
+outline-color:-moz-use-text-color;
+outline-style:none;
+outline-width:medium;
+padding:4px 0;
+position:absolute;
+color: #aaa;
+}
+.goog-menu-button-outer-box, .goog-menu-button-inner-box {
+  border-style: none;
+}
+.goog-menuitem {
+-x-system-font:none;
+color:#000000;
+font-family:Arial,sans-serif;
+font-size:12px;
+font-size-adjust:none;
+font-stretch:normal;
+font-style:normal;
+font-variant:normal;
+font-weight:normal;
+line-height:normal;
+list-style-image:none;
+list-style-position:outside;
+list-style-type:none;
+margin:0;
+padding:4px 10ex 4px 28px;
+white-space:nowrap;
+}
+.goog-menuitem-rtl {
+padding:4px 28px 4px 10ex !important;
+}
+.goog-menuitem-disabled {
+color:#CCCCCC;
+}
+.goog-menuitem-highlight, .goog-menuitem-hover {
+background-color:#D6E9F8;
+}
+.goog-submenu-arrow {
+left:auto;
+position:absolute;
+right:0;
+text-align:right;
+}
+.goog-menuitem-disabled .goog-submenu-arrow {
+display:none;
+}
+.discontinued-program{
+  position: relative;
+  margin-top: 10px;
+  text-align: center;
+  background: #fa6060;
+  padding: 5px;
+  width: 100%;
+  -moz-border-radius: 5px;
+  font-weight: bold;
+}
+.discontinued-activity{
+  position: relative;
+  text-align: center;
+  background: #fa6060;
+  padding: 5px;
+  -moz-border-radius: 5px;
+}
+.line-height-150 {
+  line-height: 150%
+}
+.margin-left-15 {
+  margin-left: 15px;
+}
+.margin-left-10 {
+  margin-left: 10px;
+}
+.text-align-right {
+  text-align: right;
+}
+.font-red {
+  color: red;
+}
+.font-black {
+  color: black;
+}
+.font-green {
+  color: green;
+}
+.profile-pic img {
+  padding: .5em;
+  border: 1px solid #ccc;
+  width: 65px;
+
+}
+.approvals-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.approvals-table th {
+ vertical-align: top;
+  padding: 3px 5px;
+  background: #F0F1F5;
+  border-bottom: 1px solid #DFDEE3;
+  border-top: 1px solid #DFDEE3;
+}
+.approvals-table  td {
+  vertical-align: top;
+  padding: 5px;
+  border-bottom: 1px solid #DFDEE3;
+  font-size: 12px;
+}
+.approval-action-approve {
+  color: #06c;
+  margin-right: 12px;
+  text-decoration: none;
+}
+.approval-action-disapprove {
+  color: #06c;
+  margin-left: 12px;
+  text-decoration: none;
+}
+.approval-action-box {
+  margin-bottom:5px;
+  margin-left: 4px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.zero-left-margin {
+  margin-left: 0;
+}
+.goog-tooltip {
+  background: InfoBackground;
+  color: infotext;
+  border: 1px solid infotext;
+  padding: 7px;
+  width: 250px;
+  font: menu;
+}
+.tabbed-left-nav {
+  margin-left: 22px;
+}
+/* Cross-browser implementation of the "display: inline-block" CSS property. */
+/* See http://www.w3.org/TR/CSS21/visuren.html#propdef-display for details. */
+/* Tested on IE 6 & 7, FF 1.5 & 2.0, Safari 2 & 3, Webkit, and Opera 9. */
+/* Gecko hack; Pre-FF3 Gecko uses -moz-inline-box instead of inline-block. */
+html>body .goog-inline-block {
+  display: -moz-inline-box; /* This is ignored by FF3 and later*/
+  display: inline-block; /* This is ignored by pre-FF3 Gecko */
+}
+/* Default rule; only Safari, Webkit, and Opera handle it without hacks. */
+.goog-inline-block {
+  position: relative;
+  display: inline-block;
+}
+/* Pre-IE7 IE hack.  On IE, "display: inline-block" only gives the element */
+/* layout, but doesn't give it inline behavior.  Subsequently setting display */
+/* to inline does the trick. */
+* html .goog-inline-block {
+  display: inline;
+}
+/* IE7-only hack.  On IE, "display: inline-block" only gives the element */
+/* layout, but doesn't give it inline behavior.  Subsequently setting display */
+/* to inline does the trick. */
+*:first-child+html .goog-inline-block {
+  display: inline;
+}
+/* Editor override */
+.editable {
+  width: 100%;
+  border: 1px solid;
+  position: relative;
+  overflow-y: auto;
+}
+.goog-toolbar {
+  width: 100%;
+}
