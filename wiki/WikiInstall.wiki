@@ -9,7 +9,7 @@ Get [http://code.google.com/appengine/downloads.html Google App Engine SDK] for 
 
 == Configure and Build ==
 
-  # Get the code. Either [http://code.google.com/p/cloudcourse/downloads/list download the binary] or [http://code.google.com/p/cloudcourse/source/checkout check out the source from subversion].
+  # [http://code.google.com/p/cloudcourse/downloads/list Get the code].
   # Update app.yaml: `<appid>` should be replaced with your App Engine app id.
   # Update settings.py: Configure `ADMIN_EMAIL` and `CALENDAR_BATCH_EVENT_FEED`. See [WikiCustomization details] if you need more info.
   # Update core/data/timezones.json  and core/data/rooms.json files to configure the system with correct room and timezone information respectively. The files come with example data.
