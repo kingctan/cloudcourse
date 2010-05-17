@@ -23,12 +23,12 @@ If you build `CloudCourse` yourself, you will need to download them manually. Th
 The bulk of the code is located under the 'core' directory.
 Look at the `core/urlsauto.py` module to see all the entry points in the application.
 
-Basically the application entry points are split in 3 categories:
+The application entry points are split into 3 categories:
  * `core/tasks.py` contains entry points for everything related to tasks/cron jobs
  * `core/ajax.py` contains every function which is called in an ajax fashion from the client
  * `core/views.py` handles every other http request
 
-We are using the django templating system to render responses. All templates are located under `core/templates`
+We are using the django templating system. All templates are located under `core/templates`
 
 == Static resources ==
 
